@@ -40,10 +40,12 @@ jobs:
           PLAYWRIGHT_ANGLE: gl
           LIBGL_ALWAYS_SOFTWARE: '1'
           GALLIUM_DRIVER: llvmpipe
-          TEST_DEVICE_SCALE_FACTOR: '0.5'
+          # Keep CSS layout and navigation geometry at their normal sizes while
+          # limiting fragment work on the hosted runner's CPU renderer.
+          TEST_DEVICE_SCALE_FACTOR: '0.125'
       - name: Upload verification evidence
         if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         with:
           name: verification-evidence
           path: test-results/
