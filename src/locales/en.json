@@ -1,0 +1,241 @@
+{
+  "ui": {
+    "tagline": "A closer look at the places that endure.",
+    "about": "About this study",
+    "location": "ROME, ITALY",
+    "catalog": "NO. 001",
+    "title": "The Colosseum",
+    "intro": "Two thousand years, still standing. Explore the layers of Rome’s most extraordinary amphitheatre.",
+    "inauguration": "80 CE",
+    "inaugurated": "INAUGURATED",
+    "height": "ORIGINAL HEIGHT",
+    "footprint": "OUTER FOOTPRINT",
+    "chooseView": "CHOOSE YOUR PERSPECTIVE",
+    "approximation": "Approximate geometry. Enduring character.",
+    "study": "INTERACTIVE STUDY",
+    "day": "Daylight",
+    "golden": "Golden hour",
+    "ruins": "Present-day ruins",
+    "ancient": "Ancient reconstruction",
+    "walk": "Explore on foot",
+    "autoOrbit": "Auto orbit",
+    "labels": "Labels",
+    "walkLook": "Drag to look",
+    "move": "Move",
+    "moveFaster": "Move faster",
+    "exit": "Exit",
+    "footer": "PAST, PRESENT & PERSPECTIVE",
+    "built": "Built to be explored.",
+    "language": "Language",
+    "home": "Monument Atlas home",
+    "viewpoints": "Monument viewpoints",
+    "viewer": "Interactive 3D Colosseum",
+    "canvas": "3D model. Drag to orbit, scroll to zoom. Use Explore on foot to navigate with WASD. Press R to reset.",
+    "lighting": "Lighting",
+    "form": "Colosseum form",
+    "cameraTools": "Camera tools",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "reset": "Reset view",
+    "resetTitle": "Reset view (R)",
+    "enterFullscreen": "Enter fullscreen",
+    "fullscreen": "Fullscreen",
+    "compass": "Compass",
+    "help": "Open navigation help",
+    "scale": "Approximate scale at the viewpoint focus",
+    "walkControls": "Walking controls",
+    "forward": "Move forward",
+    "left": "Move left",
+    "backward": "Move backward",
+    "right": "Move right",
+    "closeDetail": "Close detail",
+    "returnOverview": "Return to overview",
+    "onFoot": "ON FOOT",
+    "exitFullscreen": "Exit fullscreen",
+    "orbitHint": "Drag to rotate · Scroll to zoom · Right-drag to pan",
+    "walkHint": "Follow the paths · R to reset · Esc to return",
+    "metres": "{{value}} m",
+    "footprintValue": "{{length}} × {{width}} m"
+  },
+  "navigation": {
+    "exterior": {
+      "title": "The exterior",
+      "subtitle": "An icon, shaped by time"
+    },
+    "arena": {
+      "title": "The arena",
+      "subtitle": "At the heart of the spectacle"
+    },
+    "seating": {
+      "title": "The cavea",
+      "subtitle": "Where Rome took its seat"
+    },
+    "passages": {
+      "title": "The passages",
+      "subtitle": "Walk beneath the arches"
+    }
+  },
+  "dialogs": {
+    "about": {
+      "label": "MONUMENT ATLAS / FIELD NOTES",
+      "title": "A monument in layers.",
+      "evidenceTitle": "Evidence and interpretation",
+      "referencesTitle": "Reference library",
+      "footnote": "An independent architectural exploration. Not affiliated with the archaeological park.",
+      "summary": "Compare the present-day ruins with a plausible ancient reconstruction. Both share an approximate 189 × 156 metre footprint and a 48 metre outer wall. The ancient form does not represent one precise historical date.",
+      "evidence": "The surviving exterior guides the complete arcades and attic. The archaeological park documents marble seating, red-and-white plaster in passages, and an arena floor above the underground machinery. Exhibition models inform the seating bowl and upper colonnade.",
+      "interpretation": "The exact seat count, stair and ramp routes, timber upper seats, mast dimensions, colors and decorative profiles are simplified interpretations. The awning fabric is shown stowed. Statues, painted figures, all underground rooms, and the surrounding city are outside this study. In the ruins, the arena platform and visitor routes remain approximate.",
+      "close": "Close about dialog"
+    },
+    "help": {
+      "label": "FIND YOUR WAY",
+      "title": "Take a closer look.",
+      "orbitTitle": "Orbit",
+      "orbit": "Drag with one finger or the left mouse button.",
+      "zoomTitle": "Zoom",
+      "zoom": "Scroll, pinch, or use the + and − buttons.",
+      "panTitle": "Pan",
+      "pan": "Right-drag or move two fingers together.",
+      "walk": "Drag to look. Use WASD or the arrow pad to walk. Shift moves faster. Follow the entrance passage to the arena and its walkways.",
+      "viewTitle": "Find a viewpoint",
+      "view": "Choose any of the four perspectives. On foot, these take you to a safe starting position.",
+      "resetTitle": "Get your bearings",
+      "reset": "Press R to reset the current view. Escape exits walking. Use the overview button to return to orbit.",
+      "close": "Close navigation help"
+    },
+    "references": {
+      "monument": "Parco archeologico del Colosseo — The Colosseum ↗",
+      "underground": "The underground levels and arena floor ↗",
+      "ambulatories": "The lost southern ambulatories ↗",
+      "photos": "Restoration photography — exterior & interior ↗",
+      "stucco": "Marble seating, plaster and stucco evidence ↗",
+      "exhibition": "Il Colosseo si racconta — exhibition reconstruction ↗"
+    }
+  },
+  "meta": {
+    "description": "An interactive architectural study of the Roman Colosseum as it stands today. Orbit the ruins, enter the arena, and explore its ancient passages.",
+    "title": "The Colosseum — Monument Atlas"
+  },
+  "views": {
+    "ruins": {
+      "exterior": {
+        "title": "An enduring silhouette.",
+        "description": "A surviving arc of travertine. A city’s history in every stone.",
+        "index": "01 / THE EXTERIOR",
+        "mode": "EXTERIOR VIEW"
+      },
+      "arena": {
+        "title": "The heart of the spectacle.",
+        "description": "Beneath the missing arena floor, an intricate world is revealed.",
+        "index": "02 / THE ARENA",
+        "mode": "ARENA VIEW"
+      },
+      "seating": {
+        "title": "A seat in Roman history.",
+        "description": "Broken terraces trace the sweeping geometry of the cavea.",
+        "index": "03 / THE CAVEA",
+        "mode": "CAVEA VIEW"
+      },
+      "passages": {
+        "title": "Through the ancient arches.",
+        "description": "Follow the axial passage from the arcades into the arena.",
+        "index": "04 / THE PASSAGES",
+        "mode": "PASSAGE VIEW"
+      }
+    },
+    "ancient": {
+      "exterior": {
+        "title": "The amphitheatre, made whole.",
+        "description": "An ancient form imagined from surviving stone and archaeological evidence."
+      },
+      "arena": {
+        "title": "Above the hidden machinery.",
+        "description": "A sand-covered floor fills the arena, enclosed by marble seating."
+      },
+      "seating": {
+        "title": "The sweep of the cavea.",
+        "description": "Marble tiers, radial aisles, and an upper colonnade frame the arena."
+      },
+      "passages": {
+        "title": "Beneath the restored vaults.",
+        "description": "Plastered galleries and an axial passage connect the exterior and arena."
+      }
+    }
+  },
+  "features": {
+    "ruins": {
+      "wall": {
+        "label": "01 / TRAVERTINE & TIME",
+        "title": "The surviving outer wall",
+        "text": "Three arcaded storeys and a windowed attic rise along the northern side. Much of the southern outer wall is lost, exposing the inner structure. Brick buttresses support the surviving ends.",
+        "learn": "Learn about the surviving outer wall"
+      },
+      "hypogeum": {
+        "label": "02 / BELOW THE ARENA",
+        "title": "The hypogeum",
+        "text": "The arena floor once concealed a network of corridors, lifts, and holding spaces. Its exposed brick walls now reveal the infrastructure behind the spectacles. This study simplifies the underground layout.",
+        "learn": "Learn about the hypogeum"
+      },
+      "cavea": {
+        "label": "03 / THE CAVEA",
+        "title": "The seating terraces",
+        "text": "Concentric tiers once carried the audience high above the arena. Most original seats are gone; broken masonry, radial supports, and a small preserved seating section reveal the former arrangement.",
+        "learn": "Learn about the seating terraces"
+      }
+    },
+    "ancient": {
+      "wall": {
+        "label": "01 / THE COMPLETE EXTERIOR",
+        "title": "The restored outer wall",
+        "text": "Eighty bays form an elliptical enclosure. Three arcaded storeys support a windowed attic. Wooden masts suggest the awning system; its fabric is stowed in this interpretation.",
+        "learn": "Learn about the restored outer wall"
+      },
+      "hypogeum": {
+        "label": "02 / THE ARENA FLOOR",
+        "title": "A covered arena",
+        "text": "The sand-covered arena conceals the underground stage machinery. Archaeological evidence supports a covered floor. Its exact construction and the entrance ramps are simplified here.",
+        "learn": "Learn about a covered arena"
+      },
+      "cavea": {
+        "label": "03 / THE CAVEA",
+        "title": "The complete seating bowl",
+        "text": "Marble seats, radial aisles and an upper colonnade restore the bowl. The row count, timber upper seats, stair routes, colors and decorative details are interpretations. This model does not represent one precise historical date.",
+        "learn": "Learn about the complete seating bowl"
+      }
+    }
+  },
+  "eras": {
+    "ruins": {
+      "note": "Present-day ruins · Architectural study",
+      "sidebar": "A study of the ruins today."
+    },
+    "ancient": {
+      "note": "Ancient form · Interpretive reconstruction",
+      "sidebar": "A plausible ancient reconstruction."
+    }
+  },
+  "loading": {
+    "building": {
+      "title": "Uncovering the Colosseum",
+      "detail": "Building stone by stone…"
+    },
+    "webgl": {
+      "title": "A WebGL-capable browser is needed.",
+      "detail": "Enable hardware acceleration, then reload to explore."
+    },
+    "failed": {
+      "title": "The model could not be loaded.",
+      "detail": "Please reload the page to try again."
+    }
+  },
+  "messages": {
+    "reset": "View reset. A fresh perspective.",
+    "resetShort": "View reset.",
+    "formAdjusted": "Form changed. Moved to a clear position to avoid changed geometry.",
+    "formRetained": "Form changed. Your viewpoint is retained.",
+    "fullscreenUnsupported": "Fullscreen is unavailable in this browser.",
+    "fullscreenFailed": "Fullscreen is unavailable. You can still explore in this window.",
+    "contextLost": "The graphics context was interrupted. Reload the page to restore the model.",
+    "blocked": "Stone or an edge ahead. Turn to follow the passage, or choose another viewpoint."
+  }
+}

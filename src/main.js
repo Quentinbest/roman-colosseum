@@ -3,16 +3,69 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { buildColosseum } from './model.js';
 import { Walker } from './navigation.js';
+import { initializeLocale, changeLocale, getLocale, t, formatNumber, formatMetres } from './i18n.js';
 
 const $ = selector => document.querySelector(selector);
 const canvas = $('#scene'), viewer = $('#viewer');
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+let currentView = 'exterior', walking = false, labels = true, transition = null, toastTimer;
+let model, walker;
+let era = 'ruins', lastSwitchAdjusted = false;
+let openFeature = null, notification = null, loadingState = 'building', scaleMetres = 20;
+
+function renderFeature() {
+  if (!openFeature) return;
+  for (const field of ['label', 'title', 'text']) {
+    $(`#feature-${field}`).textContent = t(`features.${era}.${openFeature}.${field}`);
+  }
+}
+
+// Text refresh deliberately does not touch the camera, controls, geometry, or timers.
+function renderLocalizedUI() {
+  document.documentElement.lang = getLocale();
+  $('#language-select').value = getLocale();
+  document.querySelectorAll('[data-i18n]').forEach(element => { element.textContent = t(element.dataset.i18n); });
+  for (const attribute of ['aria-label', 'title', 'content']) {
+    document.querySelectorAll(`[data-i18n-${attribute}]`).forEach(element => {
+      element.setAttribute(attribute, t(element.getAttribute(`data-i18n-${attribute}`)));
+    });
+  }
+  $('#era-note').textContent = t(`eras.${era}.note`);
+  $('#sidebar-era').textContent = t(`eras.${era}.sidebar`);
+  document.querySelectorAll('[data-hotspot]').forEach(button => {
+    const key = `features.${era}.${button.dataset.hotspot}`;
+    button.setAttribute('aria-label', t(`${key}.learn`));
+    button.querySelector('b').textContent = t(`${key}.title`);
+  });
+  $('#walk-toggle span').textContent = t(walking ? 'ui.returnOverview' : 'ui.walk');
+  $('#control-hint-copy').textContent = t(walking ? 'ui.walkHint' : 'ui.orbitHint');
+  $('#control-hint svg').toggleAttribute('hidden', walking);
+  const fullscreenLabel = t(document.fullscreenElement ? 'ui.exitFullscreen' : 'ui.enterFullscreen');
+  $('#fullscreen').setAttribute('aria-label', fullscreenLabel);
+  $('#fullscreen').title = fullscreenLabel;
+  $('#height-value').textContent = formatMetres(48);
+  $('#footprint-value').textContent = t('ui.footprintValue', { length: formatNumber(189), width: formatNumber(156) });
+  $('#scale-label').textContent = formatMetres(scaleMetres);
+  $('#loading p').textContent = t(`loading.${loadingState}.title`);
+  $('#loading small').textContent = t(`loading.${loadingState}.detail`);
+  if (notification) $('#toast').textContent = t(notification.key, notification.parameters);
+  updateViewCopy();
+  renderFeature();
+}
+
+initializeLocale();
+renderLocalizedUI();
+$('#language-select').addEventListener('focus', () => walker?.clearInput());
+$('#language-select').addEventListener('change', event => {
+  changeLocale(event.target.value);
+  renderLocalizedUI();
+});
 let renderer;
 try {
   renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, powerPreference: 'high-performance' });
 } catch (error) {
-  $('#loading p').textContent = 'A WebGL-capable browser is needed.';
-  $('#loading small').textContent = 'Enable hardware acceleration, then reload to explore.';
+  loadingState = 'webgl';
+  renderLocalizedUI();
   throw error;
 }
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.7));
@@ -59,41 +112,37 @@ controls.screenSpacePanning = false;
 controls.listenToKeyEvents(canvas);
 
 const views = {
-  exterior: { position: [174, 150, 215], target: [0, 12, 0], walk: [101, 2, 8], look: [84, 3, 0], title: 'An enduring silhouette.', description: 'A surviving arc of travertine. A city’s history in every stone.', index: '01 / THE EXTERIOR', mode: 'EXTERIOR VIEW' },
-  arena: { position: [29, 11, 9], target: [-13, 10, -5], walk: [31, 7, 0], look: [-25, 9, -5], title: 'The heart of the spectacle.', description: 'Beneath the missing arena floor, an intricate world is revealed.', index: '02 / THE ARENA', mode: 'ARENA VIEW' },
-  seating: { position: [57, 34, 34], target: [-3, 4, -6], walk: [54.3, 12.8, 7.1], look: [-5, 6, -5], title: 'A seat in Roman history.', description: 'Broken terraces trace the sweeping geometry of the cavea.', index: '03 / THE CAVEA', mode: 'CAVEA VIEW' },
-  passages: { position: [88.2, 3, 0], target: [58, 4, 0], walk: [88.2, 2, 0], look: [55, 3, 0], title: 'Through the ancient arches.', description: 'Follow the axial passage from the arcades into the arena.', index: '04 / THE PASSAGES', mode: 'PASSAGE VIEW' },
+  exterior: { position: [174, 150, 215], target: [0, 12, 0], walk: [101, 2, 8], look: [84, 3, 0] },
+  arena: { position: [29, 11, 9], target: [-13, 10, -5], walk: [31, 7, 0], look: [-25, 9, -5] },
+  seating: { position: [57, 34, 34], target: [-3, 4, -6], walk: [54.3, 12.8, 7.1], look: [-5, 6, -5] },
+  passages: { position: [88.2, 3, 0], target: [58, 4, 0], walk: [88.2, 2, 0], look: [55, 3, 0] },
 };
 const ancientViews = {
-  exterior: { title: 'The amphitheatre, made whole.', description: 'An ancient form imagined from surviving stone and archaeological evidence.' },
-  arena: { position: [29, 11, 9], target: [-13, 16, -5], title: 'Above the hidden machinery.', description: 'A sand-covered floor fills the arena, enclosed by marble seating.' },
-  seating: { position: [57, 34, 34], target: [-3, 9, -6], walk: [57.4, 18.6, 7.1], look: [-5, 7, -5], title: 'The sweep of the cavea.', description: 'Marble tiers, radial aisles, and an upper colonnade frame the arena.' },
-  passages: { title: 'Beneath the restored vaults.', description: 'Plastered galleries and an axial passage connect the exterior and arena.' },
+  arena: { position: [29, 11, 9], target: [-13, 16, -5] },
+  seating: { position: [57, 34, 34], target: [-3, 9, -6], walk: [57.4, 18.6, 7.1], look: [-5, 7, -5] },
 };
 const featureData = {
-  wall: { position: new THREE.Vector3(-12, 42, -75), label: '01 / TRAVERTINE & TIME', title: 'The surviving outer wall', text: 'Three arcaded storeys and a windowed attic rise along the northern side. Much of the southern outer wall is lost, exposing the inner structure. Brick buttresses support the surviving ends.' },
-  hypogeum: { position: new THREE.Vector3(-12, 6, 6), label: '02 / BELOW THE ARENA', title: 'The hypogeum', text: 'The arena floor once concealed a network of corridors, lifts, and holding spaces. Its exposed brick walls now reveal the infrastructure behind the spectacles. This study simplifies the underground layout.' },
-  cavea: { position: new THREE.Vector3(52, 21, 31), label: '03 / THE CAVEA', title: 'The seating terraces', text: 'Concentric tiers once carried the audience high above the arena. Most original seats are gone; broken masonry, radial supports, and a small preserved seating section reveal the former arrangement.' },
+  wall: { position: new THREE.Vector3(-12, 42, -75) },
+  hypogeum: { position: new THREE.Vector3(-12, 6, 6) },
+  cavea: { position: new THREE.Vector3(52, 21, 31) },
 };
 const ancientFeatures = {
-  wall: { position: new THREE.Vector3(-12, 42, -75), label: '01 / THE COMPLETE EXTERIOR', title: 'The restored outer wall', text: 'Eighty bays form an elliptical enclosure. Three arcaded storeys support a windowed attic. Wooden masts suggest the awning system; its fabric is stowed in this interpretation.' },
-  hypogeum: { position: new THREE.Vector3(-12, 6, 6), label: '02 / THE ARENA FLOOR', title: 'A covered arena', text: 'The sand-covered arena conceals the underground stage machinery. Archaeological evidence supports a covered floor. Its exact construction and the entrance ramps are simplified here.' },
-  cavea: { position: new THREE.Vector3(52, 24, 31), label: '03 / THE CAVEA', title: 'The complete seating bowl', text: 'Marble seats, radial aisles and an upper colonnade restore the bowl. The row count, timber upper seats, stair routes, colors and decorative details are interpretations. This model does not represent one precise historical date.' },
+  wall: { position: new THREE.Vector3(-12, 42, -75) },
+  hypogeum: { position: new THREE.Vector3(-12, 6, 6) },
+  cavea: { position: new THREE.Vector3(52, 24, 31) },
 };
 const viewFor = key => ({ ...views[key], ...(era === 'ancient' ? ancientViews[key] : {}) });
 const featuresFor = () => era === 'ancient' ? ancientFeatures : featureData;
-let currentView = 'exterior', walking = false, labels = true, transition = null, toastTimer;
 let frame = 0, running = true, lastTime = performance.now();
-let model, walker;
-let era = 'ruins', lastSwitchAdjusted = false;
 const models = {};
 const tmp = new THREE.Vector3();
 
-function toast(message) {
-  $('#toast').textContent = message;
+function toast(key, parameters = {}) {
+  notification = { key, parameters };
+  $('#toast').textContent = t(key, parameters);
   $('#toast').classList.add('visible');
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => $('#toast').classList.remove('visible'), 3800);
+  toastTimer = setTimeout(() => { $('#toast').classList.remove('visible'); notification = null; }, 3800);
 }
 function resize() {
   const width = viewer.clientWidth, height = viewer.clientHeight;
@@ -111,11 +160,10 @@ function stopOrbit() {
   $('#rotate-toggle').setAttribute('aria-pressed', 'false');
 }
 function updateViewCopy() {
-  const view = viewFor(currentView);
-  $('#view-index').textContent = view.index;
-  $('#view-title').textContent = view.title;
-  $('#view-description').textContent = view.description;
-  $('#mode-label').textContent = walking ? 'ON FOOT' : view.mode;
+  $('#view-index').textContent = t(`views.ruins.${currentView}.index`);
+  $('#view-title').textContent = t(`views.${era}.${currentView}.title`);
+  $('#view-description').textContent = t(`views.${era}.${currentView}.description`);
+  $('#mode-label').textContent = t(walking ? 'ui.onFoot' : `views.ruins.${currentView}.mode`);
 }
 function switchEra(nextEra) {
   if (!models[nextEra] || nextEra === era) return;
@@ -163,17 +211,11 @@ function switchEra(nextEra) {
     const active = button.dataset.era === era;
     button.setAttribute('aria-pressed', String(active)); button.classList.toggle('selected', active);
   });
-  $('#era-note').textContent = era === 'ancient' ? 'Ancient form · Interpretive reconstruction' : 'Present-day ruins · Architectural study';
-  $('#sidebar-era').textContent = era === 'ancient' ? 'A plausible ancient reconstruction.' : 'A study of the ruins today.';
-  for (const [key, feature] of Object.entries(featuresFor())) {
-    const button = $(`[data-hotspot="${key}"]`);
-    button.setAttribute('aria-label', `Learn about ${feature.title.toLowerCase()}`);
-    button.querySelector('b').textContent = feature.title;
-  }
   $('#feature-card').hidden = true;
-  updateViewCopy();
+  openFeature = null;
+  renderLocalizedUI();
   lastSwitchAdjusted = camera.position.distanceTo(previous) > .05;
-  toast(lastSwitchAdjusted ? 'Form changed. Moved to a clear position to avoid changed geometry.' : 'Form changed. Your viewpoint is retained.');
+  toast(lastSwitchAdjusted ? 'messages.formAdjusted' : 'messages.formRetained');
 }
 document.querySelectorAll('[data-era]').forEach(button => button.addEventListener('click', () => switchEra(button.dataset.era)));
 function setView(key, immediate = false) {
@@ -185,6 +227,7 @@ function setView(key, immediate = false) {
   const view = viewFor(key);
   stopOrbit();
   $('#feature-card').hidden = true;
+  openFeature = null;
   document.querySelectorAll('[data-view]').forEach(button => {
     button.classList.toggle('active', button.dataset.view === key);
     button.setAttribute('aria-pressed', String(button.dataset.view === key));
@@ -212,7 +255,6 @@ function setWalking(enabled) {
   walking = enabled;
   viewer.classList.toggle('walking', walking);
   $('#walk-ui').hidden = !walking;
-  $('#walk-toggle span').textContent = walking ? 'Return to overview' : 'Explore on foot';
   $('#rotate-toggle').disabled = walking;
   $('#labels-toggle').disabled = walking;
   $('#zoom-in').disabled = walking;
@@ -220,13 +262,13 @@ function setWalking(enabled) {
   controls.enabled = !walking;
   walker.active = walking;
   walker.clearInput();
-  $('#control-hint').innerHTML = walking ? 'Follow the paths <i>·</i> R to reset <i>·</i> Esc to return' : '<svg><use href="#i-mouse"/></svg> Drag to rotate <i>·</i> Scroll to zoom <i>·</i> Right-drag to pan';
   setView(walking ? (currentView === 'exterior' ? 'passages' : currentView) : 'exterior', true);
+  renderLocalizedUI();
   canvas.focus({ preventScroll: true });
 }
 document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
 $('#walk-toggle').addEventListener('click', () => setWalking(!walking));
-$('#reset').addEventListener('click', () => { setView(currentView, true); toast('View reset. A fresh perspective.'); });
+$('#reset').addEventListener('click', () => { setView(currentView, true); toast('messages.reset'); });
 $('#rotate-toggle').addEventListener('click', () => {
   if (currentView !== 'exterior') setView('exterior', true);
   transition = null;
@@ -236,7 +278,7 @@ $('#rotate-toggle').addEventListener('click', () => {
 $('#labels-toggle').addEventListener('click', () => {
   labels = !labels;
   $('#labels-toggle').setAttribute('aria-pressed', String(labels));
-  if (!labels) $('#feature-card').hidden = true;
+  if (!labels) { $('#feature-card').hidden = true; openFeature = null; }
 });
 function zoom(factor) {
   transition = null;
@@ -252,11 +294,11 @@ $('#fullscreen').addEventListener('click', async () => {
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
     else if (viewer.requestFullscreen) await viewer.requestFullscreen();
-    else toast('Fullscreen is unavailable in this browser.');
-  } catch { toast('Fullscreen is unavailable. You can still explore in this window.'); }
+    else toast('messages.fullscreenUnsupported');
+  } catch { toast('messages.fullscreenFailed'); }
 });
 document.addEventListener('fullscreenchange', () => {
-  $('#fullscreen').setAttribute('aria-label', document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen');
+  renderLocalizedUI();
   resize();
 });
 
@@ -277,13 +319,11 @@ function setLighting(mode) {
 }
 document.querySelectorAll('[data-light]').forEach(button => button.addEventListener('click', () => setLighting(button.dataset.light)));
 document.querySelectorAll('[data-hotspot]').forEach(button => button.addEventListener('click', () => {
-  const feature = featuresFor()[button.dataset.hotspot];
-  $('#feature-label').textContent = feature.label;
-  $('#feature-title').textContent = feature.title;
-  $('#feature-text').textContent = feature.text;
+  openFeature = button.dataset.hotspot;
+  renderFeature();
   $('#feature-card').hidden = false;
 }));
-$('#feature-close').addEventListener('click', () => { $('#feature-card').hidden = true; });
+$('#feature-close').addEventListener('click', () => { $('#feature-card').hidden = true; openFeature = null; });
 for (const name of ['about', 'help']) {
   const dialog = $(`#${name}-dialog`);
   $(`#${name}-open`).addEventListener('click', () => { walker?.clearInput(); stopOrbit(); dialog.showModal(); });
@@ -292,10 +332,11 @@ for (const name of ['about', 'help']) {
 }
 window.addEventListener('keydown', event => {
   if (document.querySelector('dialog[open]') || event.target.closest('input,textarea,select')) return;
-  if (event.code === 'KeyR') { setView(currentView, true); toast('View reset.'); }
+  if (event.code === 'KeyR') { setView(currentView, true); toast('messages.resetShort'); }
   if (event.code === 'Escape') {
     if (walking) setWalking(false);
     $('#feature-card').hidden = true;
+    openFeature = null;
   }
 });
 controls.addEventListener('start', () => { transition = null; canvas.style.opacity = '1'; stopOrbit(); });
@@ -341,7 +382,7 @@ function animate(time) {
     const pixelsPerMetre = viewer.clientHeight / (2 * camera.position.distanceTo(controls.target) * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)));
     const metres = pixelsPerMetre > 70 ? 1 : pixelsPerMetre > 12 ? 5 : 20;
     $('.scale-bar>span').style.width = `${metres * pixelsPerMetre}px`;
-    $('#scale-label').textContent = `${metres} m`;
+    if (metres !== scaleMetres) { scaleMetres = metres; $('#scale-label').textContent = formatMetres(metres); }
   }
 }
 
@@ -377,12 +418,12 @@ setTimeout(() => {
     };
   } catch (error) {
     console.error(error);
-    $('#loading p').textContent = 'The model could not be loaded.';
-    $('#loading small').textContent = 'Please reload the page to try again.';
+    loadingState = 'failed';
+    renderLocalizedUI();
   }
 }, 60);
 
 canvas.addEventListener('webglcontextlost', event => {
   event.preventDefault(); running = false;
-  toast('The graphics context was interrupted. Reload the page to restore the model.');
+  toast('messages.contextLost');
 });

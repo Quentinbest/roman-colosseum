@@ -2,7 +2,10 @@
   const results = [];
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  const check = (name, pass, evidence) => results.push({ name, pass: Boolean(pass), evidence });
+  const check = (name, pass, evidence) => {
+    results.push({ name, pass: Boolean(pass), evidence });
+    console.log(`${pass ? 'PASS' : 'FAIL'}: ${name}`, pass ? '' : evidence);
+  };
   const state = () => page.evaluate(() => window.colosseum.state());
   const sleep = ms => page.waitForTimeout(ms);
   await page.setViewportSize({ width: 1440, height: 1000 });
@@ -14,6 +17,11 @@
   await page.waitForFunction(() => window.colosseum?.ready);
   await sleep(800);
   const audit = await page.evaluate(() => window.colosseum.auditGeometry());
+  console.log('WebGL environment:', await page.evaluate(() => {
+    const gl = document.querySelector('#scene').getContext('webgl2');
+    const debug = gl.getExtension('WEBGL_debug_renderer_info');
+    return { renderer: gl.getParameter(debug?.UNMASKED_RENDERER_WEBGL ?? gl.RENDERER), deviceScaleFactor: devicePixelRatio };
+  }));
   check('Geometry has finite positions, normals, UVs, and visible reverse surfaces', audit.nonFinite === 0 && audit.missingNormals === 0 && audit.allDoubleSided, audit);
   await page.screenshot({ path: 'artifacts/exterior.png' });
   const initial = await state();

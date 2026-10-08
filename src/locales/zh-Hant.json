@@ -1,0 +1,241 @@
+{
+  "ui": {
+    "tagline": "細看那些歷久彌存的地方。",
+    "about": "關於本計畫",
+    "location": "義大利，羅馬",
+    "catalog": "第 001 號",
+    "title": "羅馬競技場",
+    "intro": "兩千年過去，依然屹立。探索羅馬這座非凡圓形競技場的層層歷史。",
+    "inauguration": "西元 80 年",
+    "inaugurated": "落成時間",
+    "height": "原始高度",
+    "footprint": "外部輪廓尺寸",
+    "chooseView": "選擇視角",
+    "approximation": "近似的幾何，長存的風貌。",
+    "study": "互動式建築研究",
+    "day": "日光",
+    "golden": "夕照",
+    "ruins": "現存遺跡",
+    "ancient": "古代復原",
+    "walk": "步行探索",
+    "autoOrbit": "自動環繞",
+    "labels": "標註",
+    "walkLook": "拖曳查看",
+    "move": "移動",
+    "moveFaster": "加速移動",
+    "exit": "離開",
+    "footer": "過去、現在與視角",
+    "built": "為探索而建。",
+    "language": "語言",
+    "home": "Monument Atlas 首頁",
+    "viewpoints": "建築視角",
+    "viewer": "互動式三維羅馬競技場",
+    "canvas": "三維模型。拖曳環繞，捲動縮放。選擇步行探索後使用 WASD 移動。按 R 重設。",
+    "lighting": "光照",
+    "form": "競技場形態",
+    "cameraTools": "視角工具",
+    "zoomIn": "放大",
+    "zoomOut": "縮小",
+    "reset": "重設視角",
+    "resetTitle": "重設視角（R）",
+    "enterFullscreen": "進入全螢幕",
+    "fullscreen": "全螢幕",
+    "compass": "指南針",
+    "help": "開啟導覽說明",
+    "scale": "視角焦點處的近似比例尺",
+    "walkControls": "步行控制",
+    "forward": "向前移動",
+    "left": "向左移動",
+    "backward": "向後移動",
+    "right": "向右移動",
+    "closeDetail": "關閉詳細說明",
+    "returnOverview": "返回全景",
+    "onFoot": "步行模式",
+    "exitFullscreen": "離開全螢幕",
+    "orbitHint": "拖曳旋轉 · 捲動縮放 · 右鍵拖曳平移",
+    "walkHint": "沿路徑行走 · R 重設 · Esc 返回",
+    "metres": "{{value}} 公尺",
+    "footprintValue": "{{length}} × {{width}} 公尺"
+  },
+  "navigation": {
+    "exterior": {
+      "title": "外觀",
+      "subtitle": "時光雕琢的地標"
+    },
+    "arena": {
+      "title": "競技場",
+      "subtitle": "盛大場面的中心"
+    },
+    "seating": {
+      "title": "看臺",
+      "subtitle": "古羅馬觀眾的席位"
+    },
+    "passages": {
+      "title": "通道",
+      "subtitle": "漫步拱門之下"
+    }
+  },
+  "dialogs": {
+    "about": {
+      "label": "MONUMENT ATLAS / 考察筆記",
+      "title": "層疊歷史中的紀念建築。",
+      "evidenceTitle": "考古依據與詮釋性復原",
+      "referencesTitle": "參考資料",
+      "footnote": "獨立的建築探索計畫，與考古公園無隸屬關係。",
+      "close": "關閉計畫介紹",
+      "summary": "比較現存遺跡與合理推想的古代復原。兩者的外部輪廓均約為 189 × 156 公尺，外牆約高 48 公尺。古代形態不代表某個確切的歷史時點。",
+      "evidence": "現存外牆為完整拱廊和頂層牆體的復原提供依據。考古公園的資料記載了大理石看臺、通道中的紅白灰泥，以及地下機械設施上方的競技場地面。展覽模型為看臺整體和上層柱廊提供參考。",
+      "interpretation": "具體座席數量、階梯與坡道路線、上層木質座席、桅杆尺寸、顏色和裝飾輪廓均屬簡化的詮釋性設計。遮陽篷布按收起狀態展示。雕像、彩繪人物、全部地下房間及周邊城市均未納入本研究。遺跡形態中的競技場平台和參觀路線也採用近似設計。"
+    },
+    "help": {
+      "label": "探索指南",
+      "title": "走近細看。",
+      "orbitTitle": "環繞",
+      "orbit": "用單指或滑鼠左鍵拖曳。",
+      "zoomTitle": "縮放",
+      "zoom": "捲動、雙指縮放，或使用 + 和 − 按鈕。",
+      "panTitle": "平移",
+      "pan": "按住右鍵拖曳，或雙指同向拖曳。",
+      "walk": "拖曳查看四周，用 WASD 或方向按鈕步行，按住 Shift 加速。沿入口通道前往競技場及其步道。",
+      "viewTitle": "選擇視角",
+      "view": "可選擇四個視角中的任意一個。在步行模式下，會前往安全的起點。",
+      "resetTitle": "重新定位",
+      "reset": "按 R 重設目前視角，按 Escape 離開步行。使用返回全景按鈕恢復環繞模式。",
+      "close": "關閉導覽說明"
+    },
+    "references": {
+      "monument": "Parco archeologico del Colosseo — 羅馬競技場 ↗",
+      "underground": "地下層與競技場地面 ↗",
+      "ambulatories": "已消失的南側環廊 ↗",
+      "photos": "修復照片 — 外部與內部 ↗",
+      "stucco": "大理石看臺、灰泥飾面與灰泥浮雕的依據 ↗",
+      "exhibition": "Il Colosseo si racconta — 展覽復原模型 ↗"
+    }
+  },
+  "meta": {
+    "description": "互動式羅馬競技場建築研究。環繞現存遺跡，走進競技場，探索古老通道。",
+    "title": "羅馬競技場 — Monument Atlas"
+  },
+  "eras": {
+    "ruins": {
+      "note": "現存遺跡 · 建築研究",
+      "sidebar": "現存遺跡的建築研究。"
+    },
+    "ancient": {
+      "note": "古代形態 · 詮釋性復原",
+      "sidebar": "合理推想的古代復原。"
+    }
+  },
+  "loading": {
+    "building": {
+      "title": "走近羅馬競技場",
+      "detail": "正在逐石構建…"
+    },
+    "webgl": {
+      "title": "需要支援 WebGL 的瀏覽器。",
+      "detail": "請啟用硬體加速，然後重新載入以開始探索。"
+    },
+    "failed": {
+      "title": "模型載入失敗。",
+      "detail": "請重新載入頁面以重試。"
+    }
+  },
+  "messages": {
+    "reset": "視角已重設，換個角度再看看。",
+    "resetShort": "視角已重設。",
+    "formAdjusted": "形態已切換。為避開變化的建築結構，已移至沒有障礙物的位置。",
+    "formRetained": "形態已切換，視點保持不變。",
+    "fullscreenUnsupported": "此瀏覽器不支援全螢幕。",
+    "fullscreenFailed": "暫時無法進入全螢幕，仍可在目前視窗中探索。",
+    "contextLost": "圖形環境已中斷，請重新載入頁面以恢復模型。",
+    "blocked": "前方有石牆或邊緣。請轉向沿通道前行，或選擇其他視角。"
+  },
+  "views": {
+    "ruins": {
+      "exterior": {
+        "title": "歷久彌存的輪廓。",
+        "description": "石灰華砌成的弧牆依然矗立，每塊石頭都承載著城市的歷史。",
+        "index": "01 / 外觀",
+        "mode": "外觀視角"
+      },
+      "arena": {
+        "title": "盛大場面的中心。",
+        "description": "競技場地面已經消失，其下錯綜複雜的世界顯露出來。",
+        "index": "02 / 競技場",
+        "mode": "競技場視角"
+      },
+      "seating": {
+        "title": "在羅馬歷史中落座。",
+        "description": "殘破的層層看臺勾勒出恢宏的弧形輪廓。",
+        "index": "03 / 看臺",
+        "mode": "看臺視角"
+      },
+      "passages": {
+        "title": "穿行古老拱門。",
+        "description": "沿軸向通道，從拱廊走入競技場。",
+        "index": "04 / 通道",
+        "mode": "通道視角"
+      }
+    },
+    "ancient": {
+      "exterior": {
+        "title": "圓形競技場的完整面貌。",
+        "description": "依據現存石構與考古資料，推想古代的建築形態。"
+      },
+      "arena": {
+        "title": "隱蔽機械設施之上。",
+        "description": "鋪滿沙土的地面覆蓋競技場，四周環繞大理石看臺。"
+      },
+      "seating": {
+        "title": "看臺的恢宏曲線。",
+        "description": "大理石座席、放射狀走道與上層柱廊環抱競技場。"
+      },
+      "passages": {
+        "title": "復原的拱頂之下。",
+        "description": "灰泥飾面的廊道和軸向通道連接外部與競技場。"
+      }
+    }
+  },
+  "features": {
+    "ruins": {
+      "wall": {
+        "label": "01 / 石灰華與時光",
+        "title": "現存外牆",
+        "text": "北側矗立著三層拱廊與帶窗的頂層牆體。南側大部分外牆已倒塌，露出內部結構。磚砌扶壁支撐著殘存牆體的兩端。",
+        "learn": "了解現存外牆"
+      },
+      "hypogeum": {
+        "label": "02 / 競技場之下",
+        "title": "地下結構",
+        "text": "競技場地面曾遮蔽由走廊、升降裝置和候場空間組成的地下網絡。如今裸露的磚牆揭示了盛大表演背後的設施。本研究對地下佈局作了簡化。",
+        "learn": "了解地下結構"
+      },
+      "cavea": {
+        "label": "03 / 看臺",
+        "title": "階梯看臺",
+        "text": "同心排列的層層座席曾將觀眾帶到競技場上方的高處。大多數原有座席已經消失；殘破砌體、放射狀支撐和一小段保存下來的座席，顯露出昔日的佈局。",
+        "learn": "了解階梯看臺"
+      }
+    },
+    "ancient": {
+      "wall": {
+        "label": "01 / 完整外觀",
+        "title": "復原的外牆",
+        "text": "八十個開間構成橢圓形的圍合建築。三層拱廊支撐著帶窗的頂層牆體。木質桅杆示意遮陽篷系統；在本次詮釋性復原中，篷布處於收起狀態。",
+        "learn": "了解復原的外牆"
+      },
+      "hypogeum": {
+        "label": "02 / 競技場地面",
+        "title": "覆蓋地下設施的競技場",
+        "text": "鋪沙的競技場地面遮蔽著地下舞臺機械。考古證據支持地面曾覆蓋地下設施的判斷。這裡對其具體構造和入口坡道作了簡化。",
+        "learn": "了解覆蓋地下設施的競技場"
+      },
+      "cavea": {
+        "label": "03 / 看臺",
+        "title": "完整的環形看臺",
+        "text": "大理石座席、放射狀走道和上層柱廊恢復了看臺的整體形態。座席排數、上層木質座席、階梯路線、顏色及裝飾細節均屬詮釋性設計。本模型不代表某個確切的歷史時點。",
+        "learn": "了解完整的環形看臺"
+      }
+    }
+  }
+}

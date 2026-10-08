@@ -1,0 +1,241 @@
+{
+  "ui": {
+    "tagline": "Una mirada cercana a los lugares que perduran.",
+    "about": "Acerca de este estudio",
+    "location": "ROMA, ITALIA",
+    "catalog": "N.º 001",
+    "title": "El Coliseo",
+    "intro": "Dos mil años y aún en pie. Explora las capas de historia del extraordinario anfiteatro de Roma.",
+    "inauguration": "80 d. C.",
+    "inaugurated": "INAUGURACIÓN",
+    "height": "ALTURA ORIGINAL",
+    "footprint": "DIMENSIONES EXTERIORES",
+    "chooseView": "ELIGE UNA PERSPECTIVA",
+    "approximation": "Geometría aproximada. Carácter duradero.",
+    "study": "ESTUDIO INTERACTIVO",
+    "day": "Luz diurna",
+    "golden": "Luz del atardecer",
+    "ruins": "Ruinas actuales",
+    "ancient": "Reconstrucción de la Antigüedad",
+    "walk": "Explorar a pie",
+    "autoOrbit": "Giro automático",
+    "labels": "Etiquetas",
+    "walkLook": "Arrastra para mirar",
+    "move": "Moverse",
+    "moveFaster": "Moverse más rápido",
+    "exit": "Salir",
+    "footer": "PASADO, PRESENTE Y PERSPECTIVA",
+    "built": "Un lugar para explorar.",
+    "language": "Idioma",
+    "home": "Inicio de Monument Atlas",
+    "viewpoints": "Vistas del monumento",
+    "viewer": "Coliseo 3D interactivo",
+    "canvas": "Modelo 3D. Arrastra para girar y usa la rueda para acercar o alejar. Elige Explorar a pie para moverte con WASD. Pulsa R para restablecer.",
+    "lighting": "Iluminación",
+    "form": "Forma del Coliseo",
+    "cameraTools": "Controles de cámara",
+    "zoomIn": "Acercar",
+    "zoomOut": "Alejar",
+    "reset": "Restablecer vista",
+    "resetTitle": "Restablecer vista (R)",
+    "enterFullscreen": "Entrar en pantalla completa",
+    "fullscreen": "Pantalla completa",
+    "compass": "Brújula",
+    "help": "Abrir ayuda de navegación",
+    "scale": "Escala aproximada en el punto de enfoque",
+    "walkControls": "Controles de desplazamiento",
+    "forward": "Avanzar",
+    "left": "Moverse a la izquierda",
+    "backward": "Retroceder",
+    "right": "Moverse a la derecha",
+    "closeDetail": "Cerrar detalle",
+    "returnOverview": "Volver a la vista general",
+    "onFoot": "A PIE",
+    "exitFullscreen": "Salir de pantalla completa",
+    "orbitHint": "Arrastra para girar · Rueda para acercar o alejar · Arrastra con el botón derecho para desplazar la vista",
+    "walkHint": "Sigue los caminos · R para restablecer · Esc para volver",
+    "metres": "{{value}} m",
+    "footprintValue": "{{length}} × {{width}} m"
+  },
+  "navigation": {
+    "exterior": {
+      "title": "El exterior",
+      "subtitle": "Un icono moldeado por el tiempo"
+    },
+    "arena": {
+      "title": "La arena",
+      "subtitle": "En el centro del espectáculo"
+    },
+    "seating": {
+      "title": "El graderío",
+      "subtitle": "Donde Roma tomaba asiento"
+    },
+    "passages": {
+      "title": "Los pasajes",
+      "subtitle": "Camina bajo los arcos"
+    }
+  },
+  "dialogs": {
+    "about": {
+      "label": "MONUMENT ATLAS / NOTAS DE CAMPO",
+      "title": "Un monumento de muchas capas.",
+      "evidenceTitle": "Evidencia e interpretación",
+      "referencesTitle": "Biblioteca de referencias",
+      "footnote": "Una exploración arquitectónica independiente, sin afiliación al parque arqueológico.",
+      "close": "Cerrar información del estudio",
+      "summary": "Compara las ruinas actuales con una reconstrucción plausible del Coliseo antiguo. Ambas comparten unas dimensiones exteriores aproximadas de 189 × 156 metros y un muro exterior de 48 metros de altura. La forma antigua no representa una fecha histórica precisa.",
+      "evidence": "El exterior conservado orienta la reconstrucción de las arquerías y el ático. El parque arqueológico documenta asientos de mármol, enlucidos rojos y blancos en los pasajes y el suelo de la arena sobre la maquinaria subterránea. Los modelos de exposición sirven de referencia para el graderío y la columnata superior.",
+      "interpretation": "El número exacto de asientos, las rutas de escaleras y rampas, los asientos superiores de madera, las dimensiones de los mástiles, los colores y los perfiles decorativos son interpretaciones simplificadas. La tela del toldo se muestra recogida. Las estatuas, las figuras pintadas, todas las salas subterráneas y la ciudad circundante quedan fuera del estudio. En las ruinas, la plataforma de la arena y los recorridos de visita también son aproximados."
+    },
+    "help": {
+      "label": "ORIENTACIÓN",
+      "title": "Mira más de cerca.",
+      "orbitTitle": "Girar",
+      "orbit": "Arrastra con un dedo o con el botón izquierdo del ratón.",
+      "zoomTitle": "Ampliar o reducir",
+      "zoom": "Usa la rueda, el gesto de pellizco o los botones + y −.",
+      "panTitle": "Desplazar la vista",
+      "pan": "Arrastra con el botón derecho o mueve dos dedos a la vez.",
+      "walk": "Arrastra para mirar. Camina con WASD o los botones de dirección. Shift aumenta la velocidad. Sigue el pasaje de entrada hasta la arena y sus pasarelas.",
+      "viewTitle": "Elegir una vista",
+      "view": "Elige cualquiera de las cuatro perspectivas. A pie, te llevan a una posición inicial segura.",
+      "resetTitle": "Recuperar la orientación",
+      "reset": "Pulsa R para restablecer la vista actual. Escape sale del modo a pie. Usa el botón de vista general para volver a girar alrededor del modelo.",
+      "close": "Cerrar ayuda de navegación"
+    },
+    "references": {
+      "monument": "Parco archeologico del Colosseo — El Coliseo ↗",
+      "underground": "Los niveles subterráneos y el suelo de la arena ↗",
+      "ambulatories": "Las desaparecidas galerías del sur ↗",
+      "photos": "Fotografías de restauración — exterior e interior ↗",
+      "stucco": "Evidencias de asientos de mármol, revestimientos y estuco ↗",
+      "exhibition": "Il Colosseo si racconta — reconstrucción de la exposición ↗"
+    }
+  },
+  "meta": {
+    "description": "Un estudio arquitectónico interactivo del Coliseo de Roma actual. Recorre las ruinas, entra en la arena y explora sus antiguos pasajes.",
+    "title": "El Coliseo — Monument Atlas"
+  },
+  "eras": {
+    "ruins": {
+      "note": "Ruinas actuales · Estudio arquitectónico",
+      "sidebar": "Un estudio de las ruinas actuales."
+    },
+    "ancient": {
+      "note": "Forma antigua · Reconstrucción interpretativa",
+      "sidebar": "Una reconstrucción plausible del Coliseo antiguo."
+    }
+  },
+  "loading": {
+    "building": {
+      "title": "Descubriendo el Coliseo",
+      "detail": "Construyendo piedra a piedra…"
+    },
+    "webgl": {
+      "title": "Se necesita un navegador compatible con WebGL.",
+      "detail": "Activa la aceleración por hardware y vuelve a cargar la página para explorar."
+    },
+    "failed": {
+      "title": "No se pudo cargar el modelo.",
+      "detail": "Vuelve a cargar la página para intentarlo de nuevo."
+    }
+  },
+  "messages": {
+    "reset": "Vista restablecida. Una nueva perspectiva.",
+    "resetShort": "Vista restablecida.",
+    "formAdjusted": "Forma cambiada. Se ha ajustado tu posición para evitar obstáculos en la nueva estructura.",
+    "formRetained": "Forma cambiada. Se conserva tu punto de vista.",
+    "fullscreenUnsupported": "Este navegador no permite la pantalla completa.",
+    "fullscreenFailed": "No se puede activar la pantalla completa. Puedes seguir explorando en esta ventana.",
+    "contextLost": "Se ha interrumpido el contexto gráfico. Vuelve a cargar la página para recuperar el modelo.",
+    "blocked": "Hay un muro de piedra o un borde delante. Gira para seguir el pasaje o elige otra vista."
+  },
+  "views": {
+    "ruins": {
+      "exterior": {
+        "title": "Una silueta que perdura.",
+        "description": "Un tramo curvo del muro de travertino que aún resiste. La historia de una ciudad en cada piedra.",
+        "index": "01 / EL EXTERIOR",
+        "mode": "VISTA EXTERIOR"
+      },
+      "arena": {
+        "title": "El corazón del espectáculo.",
+        "description": "Bajo el desaparecido suelo de la arena se revela un mundo intrincado.",
+        "index": "02 / LA ARENA",
+        "mode": "VISTA DE LA ARENA"
+      },
+      "seating": {
+        "title": "Un asiento en la historia de Roma.",
+        "description": "Las terrazas fragmentadas dibujan la amplia geometría del graderío.",
+        "index": "03 / EL GRADERÍO",
+        "mode": "VISTA DEL GRADERÍO"
+      },
+      "passages": {
+        "title": "A través de los antiguos arcos.",
+        "description": "Sigue el pasaje axial desde las arquerías hasta la arena.",
+        "index": "04 / LOS PASAJES",
+        "mode": "VISTA DEL PASAJE"
+      }
+    },
+    "ancient": {
+      "exterior": {
+        "title": "El anfiteatro, completo de nuevo.",
+        "description": "Una forma antigua imaginada a partir de la piedra conservada y la evidencia arqueológica."
+      },
+      "arena": {
+        "title": "Sobre la maquinaria oculta.",
+        "description": "Un suelo cubierto de arena ocupa el recinto, rodeado de asientos de mármol."
+      },
+      "seating": {
+        "title": "La amplitud del graderío.",
+        "description": "Gradas de mármol, pasillos radiales y una columnata superior enmarcan la arena."
+      },
+      "passages": {
+        "title": "Bajo las bóvedas reconstruidas.",
+        "description": "Galerías enlucidas y un pasaje axial conectan el exterior con la arena."
+      }
+    }
+  },
+  "features": {
+    "ruins": {
+      "wall": {
+        "label": "01 / TRAVERTINO Y TIEMPO",
+        "title": "El muro exterior conservado",
+        "text": "Tres plantas de arquerías y un ático con ventanas se alzan en el lado norte. Gran parte del muro exterior sur se ha perdido y deja a la vista la estructura interna. Contrafuertes de ladrillo sostienen los extremos conservados.",
+        "learn": "Más información sobre el muro exterior conservado"
+      },
+      "hypogeum": {
+        "label": "02 / BAJO LA ARENA",
+        "title": "El hipogeo",
+        "text": "El suelo de la arena ocultaba una red de corredores, elevadores y espacios de espera. Sus muros de ladrillo expuestos revelan hoy la infraestructura de los espectáculos. Este estudio simplifica la distribución subterránea.",
+        "learn": "Más información sobre el hipogeo"
+      },
+      "cavea": {
+        "label": "03 / EL GRADERÍO",
+        "title": "Las terrazas del graderío",
+        "text": "Las gradas concéntricas elevaban al público sobre la arena. La mayoría de los asientos originales han desaparecido; la mampostería rota, los apoyos radiales y una pequeña sección conservada muestran la disposición anterior.",
+        "learn": "Más información sobre las terrazas del graderío"
+      }
+    },
+    "ancient": {
+      "wall": {
+        "label": "01 / EL EXTERIOR COMPLETO",
+        "title": "El muro exterior reconstruido",
+        "text": "Ochenta tramos forman un recinto elíptico. Tres plantas de arquerías sostienen un ático con ventanas. Los mástiles de madera sugieren el sistema de toldos; en esta interpretación, la tela está recogida.",
+        "learn": "Más información sobre el muro exterior reconstruido"
+      },
+      "hypogeum": {
+        "label": "02 / EL SUELO DE LA ARENA",
+        "title": "Una arena con suelo completo",
+        "text": "El suelo cubierto de arena oculta la maquinaria escénica subterránea. La evidencia arqueológica respalda la existencia de un suelo que cubría el subsuelo. Su construcción exacta y las rampas de entrada se simplifican aquí.",
+        "learn": "Más información sobre la arena con suelo completo"
+      },
+      "cavea": {
+        "label": "03 / EL GRADERÍO",
+        "title": "El graderío completo",
+        "text": "Los asientos de mármol, los pasillos radiales y una columnata superior recuperan el graderío. El número de filas, los asientos superiores de madera, las rutas de escaleras, los colores y los detalles decorativos son interpretaciones. Este modelo no representa una fecha histórica precisa.",
+        "learn": "Más información sobre el graderío completo"
+      }
+    }
+  }
+}

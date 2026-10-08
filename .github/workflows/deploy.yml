@@ -1,6 +1,7 @@
 name: Deploy Colosseum to GitHub Pages
 
 on:
+  pull_request:
   push:
     branches: [main]
   workflow_dispatch:
@@ -23,18 +24,48 @@ jobs:
         with:
           node-version: '24'
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Check JavaScript
         run: npm run check
-      - name: Build the site and standalone file
-        run: npm run build
+      - name: Validate translations and build
+        run: npm run check:i18n && npm run test:i18n && npm run build
       - name: Upload the site
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           path: dist
 
+  browser:
+    runs-on: macos-15
+    steps:
+      - name: Check out the project
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Install the test browser
+        run: npx playwright install --no-shell chromium
+      - name: Validate translations, build, and run browser checks
+        timeout-minutes: 15
+        run: npm test
+        env:
+          PLAYWRIGHT_CHROMIUM: '1'
+          PLAYWRIGHT_ANGLE: metal
+      - name: Upload verification evidence
+        if: always()
+        uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
+        with:
+          name: verification-evidence
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+
   deploy:
-    needs: build
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: [build, browser]
     runs-on: ubuntu-latest
     permissions:
       pages: write
