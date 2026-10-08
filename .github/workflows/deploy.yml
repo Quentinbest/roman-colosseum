@@ -27,22 +27,33 @@ jobs:
         run: npm ci --no-audit --no-fund
       - name: Check JavaScript
         run: npm run check
+      - name: Validate translations and build
+        run: npm run check:i18n && npm run test:i18n && npm run build
+      - name: Upload the site
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
+        with:
+          path: dist
+
+  browser:
+    runs-on: macos-15
+    steps:
+      - name: Check out the project
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7
+        with:
+          node-version: '24'
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
       - name: Install the test browser
-        run: npx playwright install --with-deps --no-shell chromium
-      - name: Install Mesa software rendering
-        run: sudo apt-get install -y libgl1-mesa-dri libglx-mesa0 mesa-utils xvfb
+        run: npx playwright install --no-shell chromium
       - name: Validate translations, build, and run browser checks
         timeout-minutes: 15
-        run: xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' npm test
+        run: npm test
         env:
           PLAYWRIGHT_CHROMIUM: '1'
-          PLAYWRIGHT_HEADED: '1'
-          PLAYWRIGHT_ANGLE: gl
-          LIBGL_ALWAYS_SOFTWARE: '1'
-          GALLIUM_DRIVER: llvmpipe
-          # Keep CSS layout and navigation geometry at their normal sizes while
-          # limiting fragment work on the hosted runner's CPU renderer.
-          TEST_DEVICE_SCALE_FACTOR: '0.125'
+          PLAYWRIGHT_ANGLE: metal
       - name: Upload verification evidence
         if: always()
         uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
@@ -51,15 +62,10 @@ jobs:
           path: test-results/
           if-no-files-found: ignore
           retention-days: 14
-      - name: Upload the site
-        if: github.event_name != 'pull_request'
-        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
-        with:
-          path: dist
 
   deploy:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
-    needs: build
+    needs: [build, browser]
     runs-on: ubuntu-latest
     permissions:
       pages: write
