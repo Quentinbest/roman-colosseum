@@ -18,6 +18,7 @@ const server = http.createServer(async (request, response) => {
 });
 await new Promise((resolve, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', resolve); });
 let browser;
+const contextOptions = { deviceScaleFactor: Number(process.env.TEST_DEVICE_SCALE_FACTOR ?? 1) };
 const launchBrowser = () => chromium.launch({ channel: process.env.PLAYWRIGHT_CHROMIUM ? 'chromium' : 'chrome', headless: true });
 try {
   browser = await launchBrowser();
@@ -25,11 +26,11 @@ try {
   await fs.mkdir('test-results/localization', { recursive: true });
   const results = { passed: 0, failed: 0, results: [] };
   if (!process.argv.includes('--localization-only')) {
-    const context = await browser.newContext({ locale: 'en-US' });
+    const context = await browser.newContext({ locale: 'en-US', ...contextOptions });
     const page = await context.newPage();
     for (const file of ['tests/acceptance.js', 'tests/routes.js', 'tests/reconstruction.js']) {
       const source = (await fs.readFile(file, 'utf8')).replaceAll('/Users/quentin/workspace/roman-colosseum', process.cwd()).replaceAll('artifacts/', 'test-results/regression/');
-      const suite = vm.runInNewContext(source, { Number, Math, Boolean });
+      const suite = vm.runInNewContext(source, { Number, Math, Boolean, console });
       const suiteResults = await suite(page);
       results.results.push(...suiteResults.results);
       results.passed += suiteResults.passed;
@@ -42,7 +43,7 @@ try {
     await browser.close();
     browser = await launchBrowser();
   }
-  const localized = await localization(browser, `http://127.0.0.1:${server.address().port}`);
+  const localized = await localization(browser, `http://127.0.0.1:${server.address().port}`, contextOptions);
   results.results.push(...localized.results); results.passed += localized.passed; results.failed += localized.failed;
   await fs.writeFile('test-results/acceptance-results.json', JSON.stringify(results, null, 2));
   console.log(JSON.stringify({ passed: results.passed, failed: results.failed, failures: results.results.filter(result => !result.pass) }, null, 2));

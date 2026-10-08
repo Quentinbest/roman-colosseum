@@ -7,10 +7,10 @@ import { resources, supportedLocales, LOCALE_KEY } from '../src/i18n.js';
 const value = (locale, key) => key.split('.').reduce((node, part) => node[part], resources[locale].translation);
 const same = (a, b) => a.length === b.length && a.every((n, index) => Math.abs(n - b[index]) < .00001);
 
-export async function localization(browser, baseURL) {
+export async function localization(browser, baseURL, contextOptions = {}) {
   const results = [], errors = [];
   const check = (name, pass, evidence) => results.push({ name, pass: Boolean(pass), evidence });
-  const context = await browser.newContext({ locale: 'en-US', reducedMotion: 'reduce', viewport: { width: 1440, height: 1000 } });
+  const context = await browser.newContext({ locale: 'en-US', reducedMotion: 'reduce', viewport: { width: 1440, height: 1000 }, ...contextOptions });
   await context.route('https://**/*', route => route.abort());
   const page = await context.newPage();
   page.on('pageerror', error => errors.push(error.message));
@@ -153,7 +153,7 @@ export async function localization(browser, baseURL) {
   await context.close();
 
   const visit = async (options = {}, setup) => {
-    const context = await browser.newContext({ locale: 'zh-TW', reducedMotion: 'reduce', ...options });
+    const context = await browser.newContext({ locale: 'zh-TW', reducedMotion: 'reduce', ...options, ...contextOptions });
     await context.route('https://**/*', route => route.abort());
     if (setup) await context.addInitScript(setup);
     const page = await context.newPage(); await page.goto(url);
@@ -200,7 +200,7 @@ export async function localization(browser, baseURL) {
   check('Actual WebGL context loss is localized', await failure.page.locator('#toast').textContent() === value('ja', 'messages.contextLost'));
   await failure.context.close();
 
-  const offline = await browser.newContext({ offline: true, locale: 'ja-JP', reducedMotion: 'reduce' });
+  const offline = await browser.newContext({ offline: true, locale: 'ja-JP', reducedMotion: 'reduce', ...contextOptions });
   const filePage = await offline.newPage(), requests = [];
   filePage.on('request', request => { if (/locales|\.json(?:\?|$)/.test(request.url())) requests.push(request.url()); });
   await filePage.goto(pathToFileURL(path.resolve('dist/colosseum.html')).href); await ready(filePage);
