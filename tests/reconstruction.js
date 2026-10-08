@@ -1,7 +1,10 @@
 (async (page) => {
   const results = [], errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  const check = (name, pass, evidence) => results.push({ name, pass: Boolean(pass), evidence });
+  const check = (name, pass, evidence) => {
+    results.push({ name, pass: Boolean(pass), evidence });
+    console.log(`${pass ? 'PASS' : 'FAIL'}: ${name}`, pass ? '' : evidence);
+  };
   const state = () => page.evaluate(() => window.colosseum.state());
   const sleep = ms => page.waitForTimeout(ms);
   const same = (a, b) => a.every((value, i) => Math.abs(value - b[i]) < .001);

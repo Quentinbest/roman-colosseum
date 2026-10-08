@@ -9,7 +9,10 @@ const same = (a, b) => a.length === b.length && a.every((n, index) => Math.abs(n
 
 export async function localization(browser, baseURL, contextOptions = {}) {
   const results = [], errors = [];
-  const check = (name, pass, evidence) => results.push({ name, pass: Boolean(pass), evidence });
+  const check = (name, pass, evidence) => {
+    results.push({ name, pass: Boolean(pass), evidence });
+    console.log(`${pass ? 'PASS' : 'FAIL'}: ${name}`, pass ? '' : evidence);
+  };
   const context = await browser.newContext({ locale: 'en-US', reducedMotion: 'reduce', viewport: { width: 1440, height: 1000 }, ...contextOptions });
   await context.route('https://**/*', route => route.abort());
   const page = await context.newPage();

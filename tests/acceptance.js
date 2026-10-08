@@ -2,7 +2,10 @@
   const results = [];
   const errors = [];
   page.on('pageerror', error => errors.push(error.message));
-  const check = (name, pass, evidence) => results.push({ name, pass: Boolean(pass), evidence });
+  const check = (name, pass, evidence) => {
+    results.push({ name, pass: Boolean(pass), evidence });
+    console.log(`${pass ? 'PASS' : 'FAIL'}: ${name}`, pass ? '' : evidence);
+  };
   const state = () => page.evaluate(() => window.colosseum.state());
   const sleep = ms => page.waitForTimeout(ms);
   await page.setViewportSize({ width: 1440, height: 1000 });

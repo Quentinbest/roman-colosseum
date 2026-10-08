@@ -29,11 +29,26 @@ jobs:
         run: npm run check
       - name: Install the test browser
         run: npx playwright install --with-deps --no-shell chromium
+      - name: Install Mesa software rendering
+        run: sudo apt-get install -y libgl1-mesa-dri libglx-mesa0 mesa-utils xvfb
       - name: Validate translations, build, and run browser checks
-        run: npm test
+        timeout-minutes: 15
+        run: xvfb-run --auto-servernum --server-args='-screen 0 1920x1080x24' npm test
         env:
           PLAYWRIGHT_CHROMIUM: '1'
+          PLAYWRIGHT_HEADED: '1'
+          PLAYWRIGHT_ANGLE: gl
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          GALLIUM_DRIVER: llvmpipe
           TEST_DEVICE_SCALE_FACTOR: '0.5'
+      - name: Upload verification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: verification-evidence
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 14
       - name: Upload the site
         if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5

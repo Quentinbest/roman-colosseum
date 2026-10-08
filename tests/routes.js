@@ -3,7 +3,10 @@
   const sleep = ms => page.waitForTimeout(ms);
   const hold = async (key, ms) => { await page.keyboard.down(key); await sleep(ms); await page.keyboard.up(key); };
   const results = [];
-  const check = (name, pass, evidence) => results.push({ name, pass, evidence });
+  const check = (name, pass, evidence) => {
+    results.push({ name, pass: Boolean(pass), evidence });
+    console.log(`${pass ? 'PASS' : 'FAIL'}: ${name}`, pass ? '' : evidence);
+  };
   if ((await state()).walking) await page.keyboard.press('Escape');
   await page.locator('[data-view="arena"]').click(); await sleep(1000);
   await page.locator('#walk-toggle').click();
