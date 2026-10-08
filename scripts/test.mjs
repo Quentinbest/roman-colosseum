@@ -18,7 +18,7 @@ const server = http.createServer(async (request, response) => {
 });
 await new Promise((resolve, reject) => { server.once('error', reject); server.listen(0, '127.0.0.1', resolve); });
 let browser;
-const launchBrowser = () => chromium.launch({ ...(process.env.PLAYWRIGHT_CHROMIUM ? {} : { channel: 'chrome' }), headless: true });
+const launchBrowser = () => chromium.launch({ channel: process.env.PLAYWRIGHT_CHROMIUM ? 'chromium' : 'chrome', headless: true });
 try {
   browser = await launchBrowser();
   await fs.mkdir('test-results/regression', { recursive: true });

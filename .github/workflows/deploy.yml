@@ -28,7 +28,7 @@ jobs:
       - name: Check JavaScript
         run: npm run check
       - name: Install the test browser
-        run: npx playwright install --with-deps chromium
+        run: npx playwright install --with-deps --no-shell chromium
       - name: Validate translations, build, and run browser checks
         run: npm test
         env:
