@@ -21,7 +21,7 @@ The production site is in `dist/`. The standalone HTML embeds the application, T
 
 Use Node.js 22.12+ (Node 24 is used in CI) and `npm ci` for a reproducible installation. The interface, historical descriptions, help, and error messages support English, Simplified Chinese, Traditional Chinese, Japanese, and Spanish. Choose a language inside the viewer, including in fullscreen. Your choice takes priority over browser language preferences and is saved when browser storage permits it. Changing language preserves the scene and exploration settings; all translations work offline in the standalone HTML. Direct-file preference persistence depends on the browser.
 
-Translation keys, terminology, regional assumptions, review requirements, and maintenance instructions are in [docs/localization.md](docs/localization.md). Independent fluent review of the four target languages remains required before release.
+Translation keys, terminology, regional assumptions, review status, and maintenance instructions are in [docs/localization.md](docs/localization.md). The user approved this release on 2026-10-09; independent fluent review of the four target languages remains follow-up work.
 
 ## GitHub Pages deployment
 
