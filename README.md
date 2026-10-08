@@ -27,13 +27,13 @@ Translation keys, terminology, regional assumptions, review requirements, and ma
 
 The deployment target is [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/). Enable **GitHub Actions** in **Settings → Pages → Build and deployment → Source**. GitHub Pages requires a public repository on GitHub Free, or a plan that supports Pages for private repositories.
 
-The workflow in `.github/workflows/deploy.yml` installs locked dependencies and Chromium, checks JavaScript and catalogs, and runs the unit and browser suites. Pull requests run verification only. Pushes to `main` publish the verified `dist/`; **Run workflow** also supports deployment from `main`. The build uses relative asset paths so the site works below `/roman-colosseum/`. The standalone file remains available at `colosseum.html`.
+The workflow in `.github/workflows/deploy.yml` checks JavaScript, validates catalogs, runs unit tests, and builds on Linux. A separate standard `macos-15` runner verifies all browser behavior with Chromium's Metal renderer at normal pixel density; Linux software rendering is too slow for the existing timed walking checks. Both jobs must pass before deployment. Pull requests run verification only. Pushes to `main` publish the verified `dist/`; **Run workflow** also supports deployment from `main`. The build uses relative asset paths so the site works below `/roman-colosseum/`. The standalone file remains available at `colosseum.html`.
 
 Browser verification logs each assertion and saves completed suite results as it runs. CI retains the `verification-evidence` artifact for 14 days, including available screenshots and results after a failure. The browser step has a 15-minute limit. An interrupted run is not a pass; check the workflow conclusion and the `completed` field in `acceptance-results.json`. Renderer and device pixel ratio are logged for diagnosing differences from local Chrome.
 
 Deployment guidance: [GitHub Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) and [Vite relative base paths](https://vite.dev/guide/build.html#relative-base).
 
-部署目标为 [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/)。在 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。GitHub Free 要求仓库为公开状态；私有仓库需要支持 Pages 的套餐。工作流使用锁文件安装依赖和 Chromium，运行语法、翻译资源、单元及浏览器检查。PR 仅运行验证；`main` 收到推送或在 Actions 页面从 `main` 手动运行时，验证通过后发布 `dist/`。相对资源路径适用于 `/roman-colosseum/` 子目录，独立 HTML 文件仍保留。
+部署目标为 [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/)。在 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。GitHub Free 要求仓库为公开状态；私有仓库需要支持 Pages 的套餐。工作流在 Linux 上运行语法、翻译资源、单元检查及构建，另用标准 `macos-15` 运行器和 Chromium Metal 渲染器，以正常像素密度验证全部浏览器行为。Linux 软件渲染无法满足现有定时步行检查的帧率需求。部署必须等待两个任务都通过；PR 仅运行验证。`main` 收到推送或在 Actions 页面从 `main` 手动运行时，验证通过后发布 `dist/`。相对资源路径适用于 `/roman-colosseum/` 子目录，独立 HTML 文件仍保留。CI 验证产物保留 14 天，浏览器步骤限时 15 分钟；超时或未完成的运行不视为通过。
 
 ## Explore
 
