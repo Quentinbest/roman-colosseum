@@ -17,6 +17,16 @@ npm test        # Build and run browser acceptance checks; requires Google Chrom
 
 The production site is in `dist/`. The standalone HTML embeds the application, Three.js, and CSS; Google Fonts are optional and fall back to installed fonts when offline. No model downloads or texture services are required.
 
+## GitHub Pages deployment
+
+The deployment target is [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/). Enable **GitHub Actions** in **Settings → Pages → Build and deployment → Source**. GitHub Pages requires a public repository on GitHub Free, or a plan that supports Pages for private repositories.
+
+The workflow in `.github/workflows/deploy.yml` installs dependencies, checks JavaScript, builds the site, and publishes `dist/`. Direct dependency versions are fixed in `package.json`. It runs when `main` receives a push. You can also select **Run workflow** in the Actions tab. The build uses relative asset paths so the site works below `/roman-colosseum/`. The standalone file remains available at `colosseum.html`.
+
+Deployment guidance: [GitHub Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) and [Vite relative base paths](https://vite.dev/guide/build.html#relative-base).
+
+部署目标为 [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/)。在 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。GitHub Free 要求仓库为公开状态；私有仓库需要支持 Pages 的套餐。工作流会在 `main` 收到推送时安装依赖、检查 JavaScript、构建并发布 `dist/`，也支持从 Actions 页面手动运行。直接依赖的版本固定在 `package.json` 中。相对资源路径适用于 `/roman-colosseum/` 子目录，独立 HTML 文件仍保留。
+
 ## Explore
 
 - Drag to orbit, scroll/pinch to zoom, right-drag/two-finger drag to pan.
