@@ -15,7 +15,7 @@ The implementation follows `docs/multilingual-implementation-plan.md` from the o
 | ML-3 | Complete UI/state integration | HTML bindings, early loading/error localization, notification keys, open feature tracking, cached measurements; browser state comparisons across five locales and both eras | Complete |
 | ML-4 | Four translated catalogs and responsive presentation | Individually authored catalogs; system CJK font stacks; screenshots at 320/390 px; breakpoint, pseudolocalization and 200% zoom checks | Complete |
 | ML-5 | Regression coverage, packaging, contributor guidance and CI | Node and browser suites; HTTP subpath/persistence; offline direct-file tests; locked dependencies and PR verification workflow | Complete: local and CI runs passed all six unit tests and 240 browser checks |
-| ML-R1 | Independent linguistic release approval | In-context review of all four target languages, especially historical qualifications | Pending; user will arrange independent approval; PR remains a draft |
+| ML-R1 | Independent linguistic review | In-context review of all four target languages, especially historical qualifications | Pending follow-up; user separately approved merge and deployment on 2026-10-09 |
 
 ## Checks
 
@@ -85,6 +85,8 @@ Three initial gap-closure passes covered (1) responsive layout, (2) safe locale 
 
 All five catalogs are embedded in both outputs. Optional Google Fonts remain the only remote presentation dependency and are not needed by offline CJK fallback fonts. Bundling follows [i18next's bundled resource configuration](https://www.i18next.com/overview/configuration-options) and [Vite's JSON import support](https://vite.dev/guide/features#json).
 
-## Remaining release requirements
+## Release authorization and remaining review
 
-The initial policy uses a shared Traditional Chinese edition, shared Spanish edition, browser-language matching, and preserved brand/Latin/source names. These are documented implementation assumptions from the supplied plan; cross-region suitability of the Traditional Chinese vocabulary remains a reviewer decision. The CI blocker is resolved. The user will arrange a fluent reviewer for each target language to approve the in-context historical terminology and qualifications before production release. The PR remains a draft for that review. No deployment or merge is part of this task. File-URL persistence remains browser-dependent. Linux CPU rendering performance is not certified by the macOS browser result.
+On 2026-10-09, after receiving the editorial handoff and passing CI evidence, the user approved PR #1 and instructed proceeding with merge and deployment. This authorizes release with the independent language reviews still unrecorded, superseding the initial pre-release review gate. It is user authorization, not evidence of independent linguistic sign-off. The user will arrange those reviews as follow-up.
+
+The initial policy uses a shared Traditional Chinese edition, shared Spanish edition, browser-language matching, and preserved brand/Latin/source names. Cross-region suitability of the Traditional Chinese vocabulary and in-context historical terminology remain review items. The CI blocker is resolved. File-URL persistence remains browser-dependent. Linux CPU rendering performance is not certified by the macOS browser result.

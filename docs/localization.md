@@ -31,6 +31,6 @@ Measurements use `Intl.NumberFormat` with the selected catalog locale; geometry 
 
 ## Review and release
 
-Translations have an implementation terminology pass and an assistant editorial review, but independent fluent review of each target language remains required before production release. The user will arrange that approval; the PR remains a draft until it is recorded. Review both eras in context, including accessible names, historical qualifications, and error recovery. Traditional Chinese is authored separately, not accepted on the basis of automatic script conversion.
+Translations have an implementation terminology pass and an assistant editorial review. On 2026-10-09, the user approved PR #1 and authorized proceeding with merge and deployment. Independent fluent approvals have not been recorded; the user will arrange them as follow-up. Review both eras in context, including accessible names, historical qualifications, and error recovery. Traditional Chinese is authored separately, not accepted on the basis of automatic script conversion.
 
 Publish the hosted and standalone builds together after approval, retaining the previous build. For a locale-specific defect, remove it from the supported list and selector together, then rebuild; stale saved preferences will fall back safely. For functional regressions, restore the prior complete build. No data migration is required.
