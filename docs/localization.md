@@ -5,7 +5,7 @@ The application supports `en`, `zh-Hans`, `zh-Hant`, `ja`, and `es`. All catalog
 ## Language and terminology policy
 
 - Explicit saved choices take priority over the first supported browser preference, then English. Invalid preferences are ignored. Bare `zh` resolves to `zh-Hans`; explicit `Hans`/`Hant` overrides the region. `CN`/`SG` use Simplified Chinese and `TW`/`HK`/`MO` use Traditional Chinese.
-- Traditional Chinese uses a shared, neutral edition, with no Taiwan- or Hong Kong-only UI vocabulary. Spanish uses a broadly understandable shared edition, avoiding region-specific address forms. These are implementation assumptions for the initial five-language scope.
+- Traditional Chinese uses one shared catalog. Its current terminology includes `公尺`, `滑鼠`, `硬體` and `全螢幕`; suitability across Taiwan and Hong Kong still needs independent review. Spanish uses a broadly understandable shared edition, avoiding region-specific address forms. These are implementation assumptions for the initial five-language scope.
 - Preserve `Monument Atlas`, `Amphitheatrum Flavium`, `Parco archeologico del Colosseo`, and `Il Colosseo si racconta`. Reference URLs, coordinates, viewpoint/era identifiers, keyboard bindings, and decorative symbols do not change.
 - Preserve the distinction between archaeological evidence and interpretation. The ancient form is plausible, approximate, and not assigned to a precise historical date.
 
@@ -31,6 +31,6 @@ Measurements use `Intl.NumberFormat` with the selected catalog locale; geometry 
 
 ## Review and release
 
-Translations have an implementation terminology pass, but independent fluent review of each target language remains required before production release. Review both eras in context, including accessible names, historical qualifications, and error recovery. Traditional Chinese is authored separately, not accepted on the basis of automatic script conversion.
+Translations have an implementation terminology pass and an assistant editorial review, but independent fluent review of each target language remains required before production release. The user will arrange that approval; the PR remains a draft until it is recorded. Review both eras in context, including accessible names, historical qualifications, and error recovery. Traditional Chinese is authored separately, not accepted on the basis of automatic script conversion.
 
 Publish the hosted and standalone builds together after approval, retaining the previous build. For a locale-specific defect, remove it from the supported list and selector together, then rebuild; stale saved preferences will fall back safely. For functional regressions, restore the prior complete build. No data migration is required.

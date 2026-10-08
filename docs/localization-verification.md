@@ -1,6 +1,6 @@
 # Multilingual implementation verification
 
-Date: 2026-10-08. Local runtime: Node 24.16.0, Google Chrome via Playwright 1.58.2, macOS. CI builds on Linux and verifies browser behavior separately on the standard `macos-15` runner with Chromium's Metal backend at device pixel ratio 1.
+Implementation verification: 2026-10-08. Editorial follow-up: 2026-10-09. Local runtime: Node 24.16.0, Google Chrome via Playwright 1.58.2, macOS. CI builds on Linux and verifies browser behavior separately on the standard `macos-15` runner with Chromium's Metal backend at device pixel ratio 1.
 
 ## Scope and baseline
 
@@ -15,7 +15,7 @@ The implementation follows `docs/multilingual-implementation-plan.md` from the o
 | ML-3 | Complete UI/state integration | HTML bindings, early loading/error localization, notification keys, open feature tracking, cached measurements; browser state comparisons across five locales and both eras | Complete |
 | ML-4 | Four translated catalogs and responsive presentation | Individually authored catalogs; system CJK font stacks; screenshots at 320/390 px; breakpoint, pseudolocalization and 200% zoom checks | Complete |
 | ML-5 | Regression coverage, packaging, contributor guidance and CI | Node and browser suites; HTTP subpath/persistence; offline direct-file tests; locked dependencies and PR verification workflow | Complete: local and CI runs passed all six unit tests and 240 browser checks |
-| ML-R1 | Independent linguistic release approval | In-context review of all four target languages, especially historical qualifications | Blocked on independent fluent reviewers; draft PR only |
+| ML-R1 | Independent linguistic release approval | In-context review of all four target languages, especially historical qualifications | Pending; user will arrange independent approval; PR remains a draft |
 
 ## Checks
 
@@ -37,6 +37,23 @@ Use `export PATH=/opt/homebrew/opt/node@24/bin:$PATH` in the original local envi
 Browser coverage includes all five languages, both eras, four viewpoints, all feature cards, camera/geometry identity, lighting/orbit/label settings, held-input clearing, walking, fullscreen, About/Help, notification retranslation without extending expiry, blocked walking, loading and initialization failures, actual WebGL context loss, fullscreen failures, denied storage, HTTP reloads, invalid preferences, ordered browser languages, and offline direct-file selection. Existing geometry and navigation suites remain pinned to English.
 
 Layout checks cover 320, 390, 391, 800, 801, 1100, 1101, and 1500 px; walking at 320/390 px; doubled pseudolocalized text; and 200% CSS zoom. Screenshots were inspected for CJK glyphs and the corrected layouts. This is Chromium coverage, not a Safari/Firefox certification or independent linguistic sign-off. Test output lives under ignored `test-results/`, leaving historical `artifacts/` intact.
+
+## Editorial follow-up and review handoff
+
+The assistant compared all 161 entries in each target catalog with the English source, covering controls, accessible names, both eras, historical qualifications, help and errors. This pass changed 37 entries: 14 Spanish, nine Japanese and seven each in Simplified Chinese and Traditional Chinese. Keys, placeholders, reference URLs and historical measurements are unchanged.
+
+| Catalog | Corrections | Independent approval |
+| --- | --- | --- |
+| `zh-Hans` | Use `候场`, distinguish seats from chairs and seating terraces from stairs, clarify collision-free relocation and historical time points, identify stucco relief material | Pending; user arranging |
+| `zh-Hant` | Review separately; correct the corresponding historical/control wording and use `佈局` consistently | Pending; user arranging; check shared-edition suitability of `公尺`, `滑鼠`, `硬體`, `全螢幕` |
+| `ja` | Clarify affiliation, collision recovery, curved surviving wall, arena floor, plaster decoration and the reconstruction description; shorten the seating-card heading and matching accessible label after mobile inspection | Pending; user arranging |
+| `es` | Distinguish a reconstruction of antiquity from an old reconstruction, digital reconstruction from physical restoration, scrolling from panning, curved wall from an arch, and arena floor from sand | Pending; user arranging |
+
+The terminology check used the park's [underground-level description](https://colosseo.it/en/marvels/the-underground-levels-of-the-colosseum/) for the arena floor above the machinery and [stucco-restoration description](https://colosseo.it/en/event/the-colosseums-stucco-decorations-live-restoration/) for marble seating, colored plaster and figurative stucco. This editorial pass does not replace the independent fluent review required by the plan. The user explicitly chose to arrange that approval after this pass.
+
+During this pass, `npm run check`, `npm test` and `git diff --check` passed again: six unit tests and all 240 browser checks, with `completed: true` and zero failures. The full report is retained at ignored `test-results/editorial-full-results.json`. After the final Japanese heading adjustment, catalog validation, all six unit tests, the build, all 179 localization browser checks and `git diff --check` passed again.
+
+A separate Playwright inspection of the offline standalone build checked About, Help and all six feature cards for each target language at 1440 px and 320 px: all 64 panel bounds/overflow checks passed. All 16 Japanese panel checks passed again after the heading adjustment. Desktop About dialogs and mobile dialogs, scrollable references and ancient seating cards were visually inspected. Text remained readable, CJK glyphs rendered, and the longer Spanish era label wrapped within its control. Local screenshots and the panel reports are under ignored `test-results/editorial/`; the inspection script is `/private/tmp/colosseum-language-review.mjs`.
 
 ## Recovery and gap audit
 
@@ -61,13 +78,13 @@ Three initial gap-closure passes covered (1) responsive layout, (2) safe locale 
 
 | Output | Baseline bytes | Final bytes | Change |
 | --- | ---: | ---: | ---: |
-| Standalone HTML | 641,225 | 738,344 | +97,119 (+15.1%) |
-| JavaScript | 610,744 | 698,199 | +87,455 (+14.3%) |
-| JavaScript gzip (same compressor) | 156,338 | 185,723 | +29,385 (+18.8%) |
+| Standalone HTML | 641,225 | 738,485 | +97,260 (+15.2%) |
+| JavaScript | 610,744 | 698,340 | +87,596 (+14.3%) |
+| JavaScript gzip (same compressor) | 156,338 | 185,765 | +29,427 (+18.8%) |
 | CSS | 17,873 | 23,334 | +5,461 (+30.6%) |
 
 All five catalogs are embedded in both outputs. Optional Google Fonts remain the only remote presentation dependency and are not needed by offline CJK fallback fonts. Bundling follows [i18next's bundled resource configuration](https://www.i18next.com/overview/configuration-options) and [Vite's JSON import support](https://vite.dev/guide/features#json).
 
 ## Remaining release requirements
 
-The initial policy uses a shared Traditional Chinese edition, shared Spanish edition, browser-language matching, and preserved brand/Latin/source names. These are documented implementation assumptions from the supplied plan. The CI blocker is resolved. A fluent reviewer for each target language must still approve the in-context historical terminology and qualifications before production release. The PR remains a draft for that review. No deployment or merge is part of this task. File-URL persistence remains browser-dependent. Linux CPU rendering performance is not certified by the macOS browser result.
+The initial policy uses a shared Traditional Chinese edition, shared Spanish edition, browser-language matching, and preserved brand/Latin/source names. These are documented implementation assumptions from the supplied plan; cross-region suitability of the Traditional Chinese vocabulary remains a reviewer decision. The CI blocker is resolved. The user will arrange a fluent reviewer for each target language to approve the in-context historical terminology and qualifications before production release. The PR remains a draft for that review. No deployment or merge is part of this task. File-URL persistence remains browser-dependent. Linux CPU rendering performance is not certified by the macOS browser result.

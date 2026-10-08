@@ -16,13 +16,13 @@
     "day": "Luz diurna",
     "golden": "Luz del atardecer",
     "ruins": "Ruinas actuales",
-    "ancient": "Reconstrucción antigua",
+    "ancient": "Reconstrucción de la Antigüedad",
     "walk": "Explorar a pie",
     "autoOrbit": "Giro automático",
     "labels": "Etiquetas",
     "walkLook": "Arrastra para mirar",
     "move": "Moverse",
-    "moveFaster": "Avanzar más rápido",
+    "moveFaster": "Moverse más rápido",
     "exit": "Salir",
     "footer": "PASADO, PRESENTE Y PERSPECTIVA",
     "built": "Un lugar para explorar.",
@@ -30,7 +30,7 @@
     "home": "Inicio de Monument Atlas",
     "viewpoints": "Vistas del monumento",
     "viewer": "Coliseo 3D interactivo",
-    "canvas": "Modelo 3D. Arrastra para girar y desplaza para ampliar. Elige Explorar a pie para moverte con WASD. Pulsa R para restablecer.",
+    "canvas": "Modelo 3D. Arrastra para girar y usa la rueda para acercar o alejar. Elige Explorar a pie para moverte con WASD. Pulsa R para restablecer.",
     "lighting": "Iluminación",
     "form": "Forma del Coliseo",
     "cameraTools": "Controles de cámara",
@@ -52,7 +52,7 @@
     "returnOverview": "Volver a la vista general",
     "onFoot": "A PIE",
     "exitFullscreen": "Salir de pantalla completa",
-    "orbitHint": "Arrastra para girar · Desplaza para ampliar · Arrastra con el botón derecho para desplazar la vista",
+    "orbitHint": "Arrastra para girar · Rueda para acercar o alejar · Arrastra con el botón derecho para desplazar la vista",
     "walkHint": "Sigue los caminos · R para restablecer · Esc para volver",
     "metres": "{{value}} m",
     "footprintValue": "{{length}} × {{width}} m"
@@ -83,8 +83,8 @@
       "referencesTitle": "Biblioteca de referencias",
       "footnote": "Una exploración arquitectónica independiente, sin afiliación al parque arqueológico.",
       "close": "Cerrar información del estudio",
-      "summary": "Compara las ruinas actuales con una reconstrucción antigua plausible. Ambas comparten unas dimensiones exteriores aproximadas de 189 × 156 metros y un muro exterior de 48 metros. La forma antigua no representa una fecha histórica precisa.",
-      "evidence": "El exterior conservado orienta la reconstrucción de las arquerías y el ático. El parque arqueológico documenta asientos de mármol, revestimientos rojos y blancos en los pasajes y un suelo de arena sobre la maquinaria subterránea. Los modelos de exposición sirven de referencia para el graderío y la columnata superior.",
+      "summary": "Compara las ruinas actuales con una reconstrucción plausible del Coliseo antiguo. Ambas comparten unas dimensiones exteriores aproximadas de 189 × 156 metros y un muro exterior de 48 metros de altura. La forma antigua no representa una fecha histórica precisa.",
+      "evidence": "El exterior conservado orienta la reconstrucción de las arquerías y el ático. El parque arqueológico documenta asientos de mármol, enlucidos rojos y blancos en los pasajes y el suelo de la arena sobre la maquinaria subterránea. Los modelos de exposición sirven de referencia para el graderío y la columnata superior.",
       "interpretation": "El número exacto de asientos, las rutas de escaleras y rampas, los asientos superiores de madera, las dimensiones de los mástiles, los colores y los perfiles decorativos son interpretaciones simplificadas. La tela del toldo se muestra recogida. Las estatuas, las figuras pintadas, todas las salas subterráneas y la ciudad circundante quedan fuera del estudio. En las ruinas, la plataforma de la arena y los recorridos de visita también son aproximados."
     },
     "help": {
@@ -123,7 +123,7 @@
     },
     "ancient": {
       "note": "Forma antigua · Reconstrucción interpretativa",
-      "sidebar": "Una reconstrucción antigua plausible."
+      "sidebar": "Una reconstrucción plausible del Coliseo antiguo."
     }
   },
   "loading": {
@@ -143,18 +143,18 @@
   "messages": {
     "reset": "Vista restablecida. Una nueva perspectiva.",
     "resetShort": "Vista restablecida.",
-    "formAdjusted": "Forma cambiada. Te has desplazado a una posición despejada para evitar la geometría modificada.",
+    "formAdjusted": "Forma cambiada. Se ha ajustado tu posición para evitar obstáculos en la nueva estructura.",
     "formRetained": "Forma cambiada. Se conserva tu punto de vista.",
     "fullscreenUnsupported": "Este navegador no permite la pantalla completa.",
     "fullscreenFailed": "No se puede activar la pantalla completa. Puedes seguir explorando en esta ventana.",
     "contextLost": "Se ha interrumpido el contexto gráfico. Vuelve a cargar la página para recuperar el modelo.",
-    "blocked": "Hay piedra o un borde delante. Gira para seguir el pasaje o elige otra vista."
+    "blocked": "Hay un muro de piedra o un borde delante. Gira para seguir el pasaje o elige otra vista."
   },
   "views": {
     "ruins": {
       "exterior": {
         "title": "Una silueta que perdura.",
-        "description": "Un arco de travertino que aún resiste. La historia de una ciudad en cada piedra.",
+        "description": "Un tramo curvo del muro de travertino que aún resiste. La historia de una ciudad en cada piedra.",
         "index": "01 / EL EXTERIOR",
         "mode": "VISTA EXTERIOR"
       },
@@ -191,8 +191,8 @@
         "description": "Gradas de mármol, pasillos radiales y una columnata superior enmarcan la arena."
       },
       "passages": {
-        "title": "Bajo las bóvedas restauradas.",
-        "description": "Galerías revestidas y un pasaje axial conectan el exterior con la arena."
+        "title": "Bajo las bóvedas reconstruidas.",
+        "description": "Galerías enlucidas y un pasaje axial conectan el exterior con la arena."
       }
     }
   },
@@ -220,9 +220,9 @@
     "ancient": {
       "wall": {
         "label": "01 / EL EXTERIOR COMPLETO",
-        "title": "El muro exterior restaurado",
+        "title": "El muro exterior reconstruido",
         "text": "Ochenta tramos forman un recinto elíptico. Tres plantas de arquerías sostienen un ático con ventanas. Los mástiles de madera sugieren el sistema de toldos; en esta interpretación, la tela está recogida.",
-        "learn": "Más información sobre el muro exterior restaurado"
+        "learn": "Más información sobre el muro exterior reconstruido"
       },
       "hypogeum": {
         "label": "02 / EL SUELO DE LA ARENA",
