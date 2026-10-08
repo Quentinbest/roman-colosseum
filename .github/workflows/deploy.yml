@@ -1,6 +1,7 @@
 name: Deploy Colosseum to GitHub Pages
 
 on:
+  pull_request:
   push:
     branches: [main]
   workflow_dispatch:
@@ -23,17 +24,23 @@ jobs:
         with:
           node-version: '24'
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
+        run: npm ci --no-audit --no-fund
       - name: Check JavaScript
         run: npm run check
-      - name: Build the site and standalone file
-        run: npm run build
+      - name: Install the test browser
+        run: npx playwright install --with-deps chromium
+      - name: Validate translations, build, and run browser checks
+        run: npm test
+        env:
+          PLAYWRIGHT_CHROMIUM: '1'
       - name: Upload the site
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5
         with:
           path: dist
 
   deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: build
     runs-on: ubuntu-latest
     permissions:

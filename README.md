@@ -11,21 +11,27 @@ npm run dev
 
 ```sh
 npm run check   # JavaScript syntax checks
+npm run check:i18n # Catalog coverage and English HTML parity
+npm run test:i18n  # Locale resolution, fallback and storage tests
 npm run build   # Production site and standalone HTML
 npm test        # Build and run browser acceptance checks; requires Google Chrome
 ```
 
 The production site is in `dist/`. The standalone HTML embeds the application, Three.js, and CSS; Google Fonts are optional and fall back to installed fonts when offline. No model downloads or texture services are required.
 
+Use Node.js 22.12+ (Node 24 is used in CI) and `npm ci` for a reproducible installation. The interface, historical descriptions, help, and error messages support English, Simplified Chinese, Traditional Chinese, Japanese, and Spanish. Choose a language inside the viewer, including in fullscreen. Your choice takes priority over browser language preferences and is saved when browser storage permits it. Changing language preserves the scene and exploration settings; all translations work offline in the standalone HTML. Direct-file preference persistence depends on the browser.
+
+Translation keys, terminology, regional assumptions, review requirements, and maintenance instructions are in [docs/localization.md](docs/localization.md). Independent fluent review of the four target languages remains required before release.
+
 ## GitHub Pages deployment
 
 The deployment target is [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/). Enable **GitHub Actions** in **Settings → Pages → Build and deployment → Source**. GitHub Pages requires a public repository on GitHub Free, or a plan that supports Pages for private repositories.
 
-The workflow in `.github/workflows/deploy.yml` installs dependencies, checks JavaScript, builds the site, and publishes `dist/`. Direct dependency versions are fixed in `package.json`. It runs when `main` receives a push. You can also select **Run workflow** in the Actions tab. The build uses relative asset paths so the site works below `/roman-colosseum/`. The standalone file remains available at `colosseum.html`.
+The workflow in `.github/workflows/deploy.yml` installs locked dependencies and Chromium, checks JavaScript and catalogs, and runs the unit and browser suites. Pull requests run verification only. Pushes to `main` publish the verified `dist/`; **Run workflow** also supports deployment from `main`. The build uses relative asset paths so the site works below `/roman-colosseum/`. The standalone file remains available at `colosseum.html`.
 
 Deployment guidance: [GitHub Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages) and [Vite relative base paths](https://vite.dev/guide/build.html#relative-base).
 
-部署目标为 [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/)。在 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。GitHub Free 要求仓库为公开状态；私有仓库需要支持 Pages 的套餐。工作流会在 `main` 收到推送时安装依赖、检查 JavaScript、构建并发布 `dist/`，也支持从 Actions 页面手动运行。直接依赖的版本固定在 `package.json` 中。相对资源路径适用于 `/roman-colosseum/` 子目录，独立 HTML 文件仍保留。
+部署目标为 [quentinbest.github.io/roman-colosseum/](https://quentinbest.github.io/roman-colosseum/)。在 **Settings → Pages → Build and deployment → Source** 中选择 **GitHub Actions**。GitHub Free 要求仓库为公开状态；私有仓库需要支持 Pages 的套餐。工作流使用锁文件安装依赖和 Chromium，运行语法、翻译资源、单元及浏览器检查。PR 仅运行验证；`main` 收到推送或在 Actions 页面从 `main` 手动运行时，验证通过后发布 `dist/`。相对资源路径适用于 `/roman-colosseum/` 子目录，独立 HTML 文件仍保留。
 
 ## Explore
 
@@ -65,7 +71,7 @@ This is a procedural architectural interpretation, not a measured archaeological
 - [Electa: Il Colosseo si racconta exhibition and cutaway reconstruction](https://www.electa.it/iniziative-speciali/il-colosseo-si-racconta/)
 - [Museo della Civiltà Romana: model of Imperial Rome](https://www.museociviltaromana.it/en/node/4430) — comparative reconstruction context, not a date assigned to this model.
 
-Browser screenshots and verification evidence are in `artifacts/`. The browser checks exercise the same standalone production build that is delivered. They use an in-memory browser document and do not need a local HTTP server.
+Historical screenshots and verification evidence are in `artifacts/`. New browser runs write screenshots and `acceptance-results.json` under the ignored `test-results/` directory, preserving historical evidence. The original suites exercise the standalone production build in an English in-memory document. Localization checks additionally use a temporary local HTTP server under `/roman-colosseum/` for persistence and hosted assets, plus a direct-file offline smoke test. Locally the runner uses Google Chrome; set `PLAYWRIGHT_CHROMIUM=1` to use Playwright's installed Chromium as CI does. After a build, `node scripts/test.mjs --localization-only` runs the focused browser suite.
 
 ## Implementation
 

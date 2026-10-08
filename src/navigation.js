@@ -145,7 +145,7 @@ export class Walker {
     }
     if (!moved && performance.now() - this.blockedAt > 6500) {
       this.blockedAt = performance.now();
-      this.onBlocked('Stone or an edge ahead. Turn to follow the passage, or choose another viewpoint.');
+      this.onBlocked('messages.blocked');
     }
   }
 }
