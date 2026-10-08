@@ -1,0 +1,597 @@
+{
+  "date": "2026-10-08",
+  "runner": "Connected Playwright browser; standalone production HTML",
+  "passed": 61,
+  "failed": 0,
+  "results": [
+    {
+      "name": "Geometry has finite positions, normals, UVs, and visible reverse surfaces",
+      "pass": true,
+      "evidence": {
+        "nonFinite": 0,
+        "missingNormals": 0,
+        "allDoubleSided": true
+      }
+    },
+    {
+      "name": "Zoom buttons move in both directions",
+      "pass": true,
+      "evidence": {
+        "initial": 309.1035425225664,
+        "zoomed": 247.28283401805308
+      }
+    },
+    {
+      "name": "Complete exterior orbit via mouse drag",
+      "pass": true,
+      "evidence": {
+        "degrees": 517.7456884533093
+      }
+    },
+    {
+      "name": "Auto orbit rotates the camera",
+      "pass": true,
+      "evidence": true
+    },
+    {
+      "name": "Labels can be hidden",
+      "pass": true
+    },
+    {
+      "name": "Architectural annotation opens",
+      "pass": true
+    },
+    {
+      "name": "Lighting switches",
+      "pass": true
+    },
+    {
+      "name": "arena viewpoint is reachable",
+      "pass": true,
+      "evidence": [
+        28.999999999999996,
+        10.999999999999996,
+        9
+      ]
+    },
+    {
+      "name": "seating viewpoint is reachable",
+      "pass": true,
+      "evidence": [
+        57,
+        34,
+        34
+      ]
+    },
+    {
+      "name": "passages viewpoint is reachable",
+      "pass": true,
+      "evidence": [
+        88.20000000000002,
+        2.9999999999999982,
+        1.849216666712504e-15
+      ]
+    },
+    {
+      "name": "Walk continuously from passage to arena",
+      "pass": true,
+      "evidence": {
+        "from": [
+          88.2,
+          2.044999988079071,
+          0
+        ],
+        "to": [
+          23.46671999999962,
+          7.000000209808349,
+          -3.963770207515473e-15
+        ]
+      }
+    },
+    {
+      "name": "Return through passage without becoming trapped",
+      "pass": true,
+      "evidence": [
+        87.1003200000003,
+        2.044999988079071,
+        -6.733597960432037e-17
+      ]
+    },
+    {
+      "name": "arena walking location resets safely",
+      "pass": true,
+      "evidence": [
+        31,
+        7.000000209808349,
+        0
+      ]
+    },
+    {
+      "name": "seating walking location resets safely",
+      "pass": true,
+      "evidence": [
+        54.3,
+        13.419999809265137,
+        7.1
+      ]
+    },
+    {
+      "name": "passages walking location resets safely",
+      "pass": true,
+      "evidence": [
+        88.2,
+        2.044999988079071,
+        0
+      ]
+    },
+    {
+      "name": "exterior walking location resets safely",
+      "pass": true,
+      "evidence": [
+        101,
+        1.5949999850988388,
+        8
+      ]
+    },
+    {
+      "name": "Escape always returns to overview",
+      "pass": true
+    },
+    {
+      "name": "Reference notes open with source links",
+      "pass": true
+    },
+    {
+      "name": "Navigation help opens",
+      "pass": true
+    },
+    {
+      "name": "Fullscreen enters",
+      "pass": true
+    },
+    {
+      "name": "Fullscreen exits",
+      "pass": true
+    },
+    {
+      "name": "Mobile layout fits without horizontal overflow",
+      "pass": true,
+      "evidence": {
+        "width": 390,
+        "scrollWidth": 390,
+        "canvas": 390
+      }
+    },
+    {
+      "name": "On-screen walking controls move the camera",
+      "pass": true,
+      "evidence": [
+        85.80623999999992,
+        2.044999988079071,
+        -1.4657552609634972e-16
+      ]
+    },
+    {
+      "name": "No browser runtime errors",
+      "pass": true,
+      "evidence": []
+    },
+    {
+      "name": "Ascend arena side stair to cavea lookout",
+      "pass": true,
+      "evidence": [
+        55.794898165998795,
+        12.87999984741211,
+        4.5156339654362565
+      ]
+    },
+    {
+      "name": "Descend side stair back to arena platform",
+      "pass": true,
+      "evidence": [
+        24.428818165998894,
+        6.989999980926513,
+        4.5156371712159205
+      ]
+    },
+    {
+      "name": "Cross boardwalk above hypogeum",
+      "pass": true,
+      "evidence": [
+        -30.066559999999857,
+        7.000000209808349,
+        -0.0000013488151492676865
+      ]
+    },
+    {
+      "name": "Walkway edge prevents falling into hypogeum",
+      "pass": true,
+      "evidence": [
+        -30.06655996245796,
+        7.000000209808349,
+        -1.699681348815108
+      ]
+    },
+    {
+      "name": "Recover from walkway edge",
+      "pass": true,
+      "evidence": [
+        31,
+        7.000000209808349,
+        0
+      ]
+    },
+    {
+      "name": "Ancient switch preserves exterior position, target and orientation",
+      "pass": true,
+      "evidence": {
+        "era": "ancient",
+        "view": "exterior",
+        "walking": false,
+        "lastSwitchAdjusted": false,
+        "autoRotate": false,
+        "position": [
+          174,
+          150,
+          215
+        ],
+        "target": [
+          0,
+          12,
+          0
+        ],
+        "quaternion": [
+          -0.21619542110505224,
+          0.3247762876318254,
+          0.07652341482453714,
+          0.9175642047665605
+        ],
+        "yaw": 1.4817467441603989,
+        "cameraClear": true,
+        "supported": false,
+        "visibleForms": [
+          "ancient"
+        ],
+        "distance": 309.1035425225664,
+        "azimuth": 0.6803874096004365,
+        "triangles": 376966,
+        "calls": 469
+      }
+    },
+    {
+      "name": "Only the complete ancient form is visible, with 80 exterior bays",
+      "pass": true,
+      "evidence": {
+        "era": "ancient",
+        "bays": 80,
+        "exteriorBays": 80,
+        "geometries": 19107,
+        "approximate": true,
+        "drawCalls": 468,
+        "triangles": 376964
+      }
+    },
+    {
+      "name": "Ancient geometry has finite positions, normals, UVs and two-sided surfaces",
+      "pass": true,
+      "evidence": {
+        "nonFinite": 0,
+        "missingNormals": 0,
+        "allDoubleSided": true
+      }
+    },
+    {
+      "name": "Reverse switch preserves the viewpoint and restores the ruined outer wall",
+      "pass": true,
+      "evidence": {
+        "era": "ruins",
+        "view": "exterior",
+        "walking": false,
+        "lastSwitchAdjusted": false,
+        "autoRotate": false,
+        "position": [
+          174,
+          150,
+          215
+        ],
+        "target": [
+          0,
+          12,
+          0
+        ],
+        "quaternion": [
+          -0.21619542110505224,
+          0.3247762876318254,
+          0.07652341482453714,
+          0.9175642047665605
+        ],
+        "yaw": 1.4817467441603989,
+        "cameraClear": true,
+        "supported": false,
+        "visibleForms": [
+          "ruins"
+        ],
+        "distance": 309.1035425225664,
+        "azimuth": 0.6803874096004365,
+        "triangles": 175310,
+        "calls": 248
+      }
+    },
+    {
+      "name": "Ancient exterior supports a full 360-degree orbit",
+      "pass": true,
+      "evidence": {
+        "degrees": 518.018451363824
+      }
+    },
+    {
+      "name": "Ancient exterior zoom works",
+      "pass": true
+    },
+    {
+      "name": "Ancient annotation describes the covered arena",
+      "pass": true
+    },
+    {
+      "name": "Ancient arena viewpoint is clear",
+      "pass": true,
+      "evidence": [
+        29,
+        11,
+        9
+      ]
+    },
+    {
+      "name": "arena orbit view survives both switches",
+      "pass": true,
+      "evidence": [
+        29,
+        11,
+        9
+      ]
+    },
+    {
+      "name": "Ancient seating viewpoint is clear",
+      "pass": true,
+      "evidence": [
+        57,
+        34,
+        34
+      ]
+    },
+    {
+      "name": "seating orbit view survives both switches",
+      "pass": true,
+      "evidence": [
+        57,
+        34,
+        34
+      ]
+    },
+    {
+      "name": "Ancient passages viewpoint is clear",
+      "pass": true,
+      "evidence": [
+        88.20000000000002,
+        2.9999999999999982,
+        1.849216666712504e-15
+      ]
+    },
+    {
+      "name": "passages orbit view survives both switches",
+      "pass": true,
+      "evidence": [
+        88.20000000000002,
+        2.9999999999999982,
+        1.849216666712504e-15
+      ]
+    },
+    {
+      "name": "Walk continuously through the ancient passage into the arena",
+      "pass": true,
+      "evidence": {
+        "era": "ancient",
+        "view": "passages",
+        "walking": true,
+        "lastSwitchAdjusted": false,
+        "autoRotate": false,
+        "position": [
+          35.699039999999016,
+          7.000000209808349,
+          -3.214756630808176e-15
+        ],
+        "target": [
+          58.00000000000001,
+          4,
+          0
+        ],
+        "quaternion": [
+          0.010166830789500895,
+          0.7070336877063904,
+          -0.010166830789500893,
+          0.7070336877063905
+        ],
+        "yaw": 1.5707963267948966,
+        "cameraClear": true,
+        "supported": true,
+        "visibleForms": [
+          "ancient"
+        ],
+        "distance": 22.501840328748543,
+        "azimuth": 1.5707963267948966,
+        "triangles": 179282,
+        "calls": 197
+      }
+    },
+    {
+      "name": "Return through the ancient passage without a trap",
+      "pass": true,
+      "evidence": [
+        87.09887999999982,
+        2.044999988079071,
+        -6.742415417386712e-17
+      ]
+    },
+    {
+      "name": "Walking passage switch preserves a safe stance",
+      "pass": true
+    },
+    {
+      "name": "Switching off the ancient arena relocates safely to the surviving boardwalk",
+      "pass": true,
+      "evidence": {
+        "from": [
+          0.7667224944195343,
+          7.000000209808349,
+          11.233446713390244
+        ],
+        "to": [
+          0.7667224944195343,
+          7.000000209808349,
+          0
+        ]
+      }
+    },
+    {
+      "name": "Safety relocation preserves viewing direction",
+      "pass": true
+    },
+    {
+      "name": "Switching back from the boardwalk keeps its clear viewpoint",
+      "pass": true
+    },
+    {
+      "name": "Restored seating relocates an obstructed walking camera",
+      "pass": true,
+      "evidence": {
+        "from": [
+          54.3,
+          13.419999809265137,
+          7.1
+        ],
+        "to": [
+          57.4,
+          18.5999991607666,
+          7.1
+        ]
+      }
+    },
+    {
+      "name": "Ancient seating walking preset stands on the promenade",
+      "pass": true,
+      "evidence": [
+        57.4,
+        18.5999991607666,
+        7.1
+      ]
+    },
+    {
+      "name": "Seating promenade leads into a finished vaulted access bay",
+      "pass": true,
+      "evidence": [
+        58.58353619139107,
+        18.5999991607666,
+        18.57150377453262
+      ]
+    },
+    {
+      "name": "Access bay allows return to the seating promenade",
+      "pass": true,
+      "evidence": [
+        53.86327295592103,
+        18.5999991607666,
+        15.88310699327611
+      ]
+    },
+    {
+      "name": "Ancient arena stair reaches its upper landing",
+      "pass": true,
+      "evidence": [
+        60.03328101394676,
+        18.5999991607666,
+        4.566237161704066
+      ]
+    },
+    {
+      "name": "Ancient stair landing connects to the seating promenade",
+      "pass": true,
+      "evidence": [
+        57.33664128442172,
+        18.5999991607666,
+        7.332957425327623
+      ]
+    },
+    {
+      "name": "Ancient stair returns to the sand floor",
+      "pass": true,
+      "evidence": [
+        34.86352101985956,
+        7.000000209808349,
+        4.626719622301699
+      ]
+    },
+    {
+      "name": "Switching during camera transitions cancels stale movement",
+      "pass": true,
+      "evidence": {
+        "era": "ruins",
+        "view": "exterior",
+        "walking": false,
+        "lastSwitchAdjusted": false,
+        "autoRotate": false,
+        "position": [
+          29.39971106874615,
+          17.247672552432395,
+          9.292171821219853
+        ],
+        "target": [
+          -12.98689543946327,
+          15.99596782752716,
+          -4.994959784408949
+        ],
+        "quaternion": [
+          -0.011361176798044681,
+          0.5832908667120208,
+          0.008159734666258158,
+          0.8121429105781072
+        ],
+        "yaw": 4.712389078144772,
+        "cameraClear": true,
+        "supported": false,
+        "visibleForms": [
+          "ruins"
+        ],
+        "distance": 44.74721561747377,
+        "azimuth": 1.2456891321756844,
+        "triangles": 71418,
+        "calls": 94
+      }
+    },
+    {
+      "name": "Form switch remains available in fullscreen",
+      "pass": true
+    },
+    {
+      "name": "Both forms can be selected on mobile without overflow",
+      "pass": true
+    },
+    {
+      "name": "Ancient mobile movement controls work",
+      "pass": true,
+      "evidence": [
+        27.883756593645042,
+        7.000000209808349,
+        -0.27823601842455176
+      ]
+    },
+    {
+      "name": "Present-day experience remains the final recoverable state",
+      "pass": true
+    },
+    {
+      "name": "No reconstruction runtime errors",
+      "pass": true,
+      "evidence": []
+    }
+  ]
+}
